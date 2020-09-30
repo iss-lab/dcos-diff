@@ -21,3 +21,24 @@
 //  SOFTWARE.
 
 package util
+
+import (
+	"fmt"
+	"log"
+
+	"github.com/sergi/go-diff/diffmatchpatch"
+)
+
+// CheckError logs a fatal error and exits when an error is passed
+func CheckError(e error) {
+	if e != nil {
+		log.Fatal(e)
+	}
+}
+
+// GenerateDiff outputs a diff from two strings
+func GenerateDiff(left, right string) {
+	dmp := diffmatchpatch.New()
+	diffs := dmp.DiffMain(left, right, false)
+	fmt.Println(dmp.DiffPrettyText(diffs))
+}

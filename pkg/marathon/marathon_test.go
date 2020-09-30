@@ -21,3 +21,11 @@
 //  SOFTWARE.
 
 package marathon
+
+import (
+	"testing"
+)
+
+func TestDiff(t *testing.T) {
+	t.Fatal("Nothing to test yet")
+}

@@ -21,3 +21,35 @@
 //  SOFTWARE.
 
 package marathon
+
+import (
+	"encoding/json"
+	"os/exec"
+
+	"github.com/iss-lab/dcos-diff/pkg/util"
+)
+
+// App json struct
+type App struct {
+	ID string `json:"id"`
+}
+
+// Diff WIP
+func Diff() {
+
+}
+
+// GetAppList returns list of Apps
+func GetAppList() []App {
+	cmd := exec.Command("dcos", "marathon", "app", "list", "--json")
+	output, err := cmd.Output()
+	util.CheckError(err)
+	return GetAppListFromBytes(output)
+}
+
+// GetAppListFromBytes returns list of Apps from bytes
+func GetAppListFromBytes(input []byte) []App {
+	var s []App
+	json.Unmarshal(input, &s)
+	return s
+}
