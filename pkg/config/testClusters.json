@@ -1,0 +1,18 @@
+[
+  {
+      "attached": false,
+      "cluster_id": "9361cbc4-3c8c-463e-b42c-48043b124d77",
+      "name": "dev",
+      "status": "AVAILABLE",
+      "url": "https://10.240.1.1",
+      "version": "1.13.2"
+  },
+  {
+      "attached": true,
+      "cluster_id": "a0f3a5f2-4465-4990-81bf-8915f7c95e8e",
+      "name": "prod",
+      "status": "AVAILABLE",
+      "url": "https://10.240.1.2",
+      "version": "2.1.0"
+  }
+]

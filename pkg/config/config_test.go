@@ -20,47 +20,42 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-package util
+package config
 
 import (
 	"testing"
+
+	"github.com/iss-lab/dcos-diff/pkg/util"
 )
 
-const testAppIDsBlock1 = `/data/arangodb3
-/infra/consul
-/infra/edgelb/api
-/infra/edgelb/pools/main
-/kubernetes`
+func getTestClusters() []*Cluster {
+	b := util.GetFileBytes("./testClusters.json")
+	return GetClustersFromBytes(b)
+}
 
-const testAppIDsBlock2 = `/data/arangodb3
-/infra/consul
-/infra/edgelb/pools/main
-/kubernetes
-/zookeeper`
+func getTestConfig() *Config {
+	return New("a0f3a5f2-4465-4990-81bf-8915f7c95e8e", getTestClusters())
+}
 
-const testDiffText = `/data/arangodb3
-/infra/consul
-/infra/edgelb/api
-/infra/edgelb/pools/main
-/kubernetes
-/zookeeper`
-
-const testDiffHtml = `<span>/data/arangodb3&para;<br>/infra/consul&para;<br>/infra/edgelb/</span><del style="background:#ffe6e6;">api&para;<br>/infra/edgelb/</del><span>pools/main&para;<br>/kubernetes</span><ins style="background:#e6ffe6;">&para;<br>/zookeeper</ins>`
-
-func TestDiffText(t *testing.T) {
-	_, diffHtml := DiffText(testAppIDsBlock1, testAppIDsBlock2)
-	if diffHtml != testDiffHtml {
-		t.Fatalf("Incorrect pretty diff text: %+v", diffHtml)
+func TestGetClustersFromBytes(t *testing.T) {
+	clusters := getTestClusters()
+	if len(clusters) != 2 {
+		t.Fatal("Clusters length should be 2")
 	}
 }
 
-func TestDiffMissing(t *testing.T) {
-	missingLeft, missingRight := DiffMissing(BlockToSlice(testAppIDsBlock1), BlockToSlice(testAppIDsBlock2))
-	if missingLeft[0] != "/zookeeper" {
-		t.Fatalf("Incorrect missing left: %+v", missingLeft)
+func TestNew(t *testing.T) {
+	c := getTestConfig()
+	if c.Cluster == nil {
+		t.Fatal("Config Cluster should not be nil")
 	}
+}
 
-	if missingRight[0] != "/infra/edgelb/api" {
-		t.Fatalf("Incorrect missing right: %+v", missingRight)
+func TestEnsureCluster(t *testing.T) {
+	c := getTestConfig()
+	c.EnsureCluster()
+
+	if !c.Cluster.Attached {
+		t.Fatal("Cluster was not attached properly")
 	}
 }

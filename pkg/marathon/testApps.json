@@ -1,0 +1,720 @@
+[
+    {
+        "id": "/kubernetes",
+        "cmd": "export LD_LIBRARY_PATH=$MESOS_SANDBOX/libmesos-bundle/lib:$LD_LIBRARY_PATH; export MESOS_NATIVE_JAVA_LIBRARY=$(ls $MESOS_SANDBOX/libmesos-bundle/lib/libmesos-*.so); export JAVA_HOME=$(ls -d $MESOS_SANDBOX/jdk-*-jre/); export JAVA_HOME=${JAVA_HOME%/}; export PATH=$(ls -d $JAVA_HOME/bin):$PATH \u0026\u0026 export JAVA_OPTS=\"-Xms256M -Xmx512M -XX:-HeapDumpOnOutOfMemoryError\" \u0026\u0026 ./bootstrap -resolve=false -template=false \u0026\u0026 ./kubernetes-scheduler/bin/kubernetes",
+        "cpus": 1,
+        "gpus": 0,
+        "disk": 0,
+        "networks": [
+            {
+                "mode": "host"
+            }
+        ],
+        "executor": "",
+        "healthChecks": [
+            {
+                "portIndex": 0,
+                "maxConsecutiveFailures": 0,
+                "protocol": "MESOS_TCP",
+                "gracePeriodSeconds": 900,
+                "intervalSeconds": 30,
+                "timeoutSeconds": 30
+            }
+        ],
+        "instances": 1,
+        "mem": 1024,
+        "ports": null,
+        "portDefinitions": [
+            {
+                "port": 10019,
+                "protocol": "tcp",
+                "name": "api"
+            }
+        ],
+        "requirePorts": false,
+        "backoffSeconds": 1,
+        "backoffFactor": 1.15,
+        "maxLaunchDelaySeconds": 300,
+        "dependencies": null,
+        "tasksRunning": 1,
+        "tasksHealthy": 1,
+        "user": "nobody",
+        "upgradeStrategy": {
+            "minimumHealthCapacity": 0,
+            "maximumOverCapacity": 0
+        },
+        "unreachableStrategy": {
+            "inactiveAfterSeconds": 0,
+            "expungeAfterSeconds": 0
+        },
+        "killSelection": "YOUNGEST_FIRST",
+        "version": "2020-08-07T18:49:22.107Z",
+        "versionInfo": {
+            "lastScalingAt": "2020-08-07T18:49:22.107Z",
+            "lastConfigChangeAt": "2020-08-07T18:49:22.107Z"
+        },
+        "labels": {
+            "DCOS_COMMONS_API_VERSION": "v1",
+            "DCOS_COMMONS_UNINSTALL": "true",
+            "DCOS_PACKAGE_DEFINITION": "eyJtZXRhZGF0YSI6eyJDb250ZW50LVR5cGUiOiJhcHBsaWNhdGlvbi92bmQuZGNvcy51bml2ZXJzZS5wYWNrYWdlK2pzb247Y2hhcnNldD11dGYtODt2ZXJzaW9uPXY0IiwiQ29udGVudC1FbmNvZGluZyI6Imd6aXAifSwiZGF0YSI6Ikg0c0lBQUFBQUFBQUFNVlpXWk9pU2hyOUs0UlBNeE90eGVKU2RNUkVUR21KU2lsVklxVG94RVJGQW9taXlYSlozRzcwZjU4dkFiZXF2cmU3NXo3TWd5SGtjcjc5NU1MdnRSZzdXN3p5d3hVaVNlcEhZZTFycmRuZ2ExOXFJUTRJdkd4em15UWh5VWdLYmJ2TEdMSFJiZ2gxb1NGMEdvL1FrUkJLY0VvdUdGS1Q1Ny9VQXV5SEdmeElBalBTUEk2akpQdFhRTklvamRja0lRMC9ncWt1U1ozRWo3TVNkM0xwNVY0dWtybCtDQm9TR0p6aFZWcjcrdTlicmY3enBaYUNkQ2NqYnUxcmx1UUUzcDJnOWpYTUtmMVMyeE03OVROeWZ2VVNzR29mSmR2ejBEZ2hvekROTUtWYXhOQitxRUVjcGRtSEdjYWFjSDgyaTB0SnN2TWR3dmtwWnhOd05lZVhBTVJ0VklobTZQOVZ6RHk4UTZYUUdhWU02OSsvbjJQNUJNRUczSEhaeFZYUjRzUWkzbmxDWWNnNnkrTDA2OE5EZ3ZlTmxaK3RjenNIU1U0VVppVE1HazRVUEZ4ZGYvc1k0RFFqeWNONDFPdHJzMzd0MjVlTDBMY2tpaE9mWkRnNWZwSnlrd3NNK3ZwYUIya2tnWGtwcWNORGtEN1V2a0dnQXo5OGRxSlUvNUJ0TmNoRHNjYnlMY0habXJYOFh0dUpUM0U4eWNFallMSkJncGhpbGdZMWlQNXExRlBqWlcvVWh2L0VuYXZVQ1ZyVUhhRFR5TisvakhwUC9rTHFDczRSK3AvNythUlh0dGx6bEkwMjBXcGlQQjIxcWczUFd5ZDNvT1FMRWVheXZsblo3bG9hZGZ3Q1A3ZEZkYmNjYnYzeFV5RjNZOCtuL3F2LzVDK3Q5ZDZXVkg3VVAvUXQvcUJPcWRvMUtmWE12bUxPbnZtdFlTTERFRFRQNUpWWHZhKyt6WHR5aXVkcXRyUzBuWE1VZkhmZTJ0b0RjMmNQS09EcEUxMlJKek5UblUyUnVyU0ViaGYxVjUzUkFEV2RnWHgwZTExTlI5cWJLY2l2VTZTcmFJdTgyVmFaVDlGMXp0dHNHdG5EeVVydEM0ckp5NFlsYUYxanEvY01ZVlhJQVB0UHRqVEpGaUhLbDRNREhZdUhlT0hmNnNUL05nNjEzWXVScnE2MnhWMjBWYnhaWDlaMGc5KytEQTZuVVUvWWpucjZXUjlqYXJiNjA2MjhHSXZ4RmpPTWVYeGN6aDdqMTJPWGttRjM1NFRUVmFYcnlPQUY1VzJtZDI3ZjFaa3MzNDQ5Kys5RzFzc1VMYnNXdjM0elRITzNDR2orWWtUYllsenZLVkQ5VDNMZVRFVTMzdERlSDZOMTVweEdncmJsVit5WlBKdUhTZm04ZVBXRjBYS3U3UFVoeXB5K25Cc1M0ZzF4cVMzbkFtQlJ4UW5WblVQMy9xaTNDRWE5SnNpVmQrNVE0NTFBMllOZVIrWXplN2lrYi9QbDJoNXFGTnA0bUx1M0J3cS9OSVJnTVQrY2xqT20zMU0rRmpOaEVhQ2pIU0IrYVUweVI5U2k1VndYN0FFNmprVTF0bjM1TzNuYzdaQ2pkbHBhcW9qbkdvWFlVQ2RjeHBDcjNtS3ViV3dKNWE0aW41WnpEWFRSWlc5YTVPZjV2Y2puc2xhZVZxUHIzR2NuUU52bHZNWGp1WkxlallHOGQwUlpjQUt3QmRwSFlkWnhSSFIwQTdwWnpsb1hQU3hSMlN4Z25CM3FIdlJ2QUkvM0xON3YrUXlqSzdOL2IzYldYLzVWL2RNRitBSHlHR3FpMnlreG4zeTlYK1RhTStTTFp2QXR3K0tWNlF6SmN4MnB4c3lVWDB0OUY0ZXEvaGxPZjhwcWdOY2daNFEzZzJvZU1sc3EvSnRUU0lGeXZINTA1MlpWMXpCbnF6K1g5WXBtYUV1ZmRRUzFaZ3BLTVRhNGk5K2Z6WmthZ21wYVBJV2FSNHRpN3VicHo4WWJVMzZ0UUY0WG5JS0hPdS8wUnVuWmJzTlVvTFoxcUpNV3pBRk0vcUF3YkZQUW9iWTFoZm5CTEhtUWQwSkVQOWtQUERMbHM2N09JMDhIZmdKT3NrQy9zY1czdWhlWkVnSXVVM09JQVFYT1pIR1RLNjZqZHJpNGl3UFUzUE9NVjRZLzVSdDZsUTE4TlFQOTM0eUNVMGZIOFdhUlQyYjhZYnpwUytQTjZydHpwaFNDMjljOTFLZkFOYkppOXVYbm1TSnI1ckhBT0dqRzlxUnRua1J0czJwcGh0bTZzWDFnYmhXWTQ3NloyOHd6MlBQc0Q5ZUtUK05OUlZYQnR5cllPdm5KT3BDOTJUVm1kMzRXa0tHalVlRm5PNUI5VzlSdjlXVGNmZVpSWkc2M3hUZ2laUVczdUpiSzVLMGRTYVB1Y0pMRGUrd2NXOTliUXpKWXc0N2p1ZHRtZFFpK0xQR0hXV2Nrbld2T3pDODJJSG05RUFFZk9NQ0Mvb1drQXI0Z2Y2ZzEwRnVkejh3aXg1NGhsNUJCZFc4cXFBcms5U3ZFcEd1d3ZCdW1CYmNVR0dVZVh2d3poYmJsQUdwOFFOZDJiMVJ4UW1IMzJXYW9aUjBaZldSVWZuWkdBYXhKb2JwMkFrb2RZZSsvMHF4ajlkUUF6dy9VQW54NC9vNzl5Q25XTXJyZmxXdWNWcjRIT25DTVZuQVU4NTA3M0lJUFpHZmtIMENPQUdzNlNnSEhHVzFpbTRBc08xQ3lKYXdaa08vUUQ5eU81RktPMUkzQUpvaDNpVGNWRHl3bThVSlFwMU5lRWR6Qkd1cEVCeDhENzgrUk13cjU5QTRQMWhESWs4d1NCUXJ5VHc2TUI4NzBsZ1BBRnVUSUhlcDc2M3M0VE0rd0M3NEFIRmFiNFZWWExLSlc1WS9mWEVuMzJIcHRTWG9NOWtQZTZOVmN0aTZoeW04andaN1RuUG5VbXgyWVQ1T2xSUmtlazNFRWVaa3oxR01YOUFMZEF2aWRzQ0p2d1c5cmlOL09CaHZHeXQ1M0F5VjFtVzVzM21heXYyQWlRYllzd2IydGcvUCtaNHFRT1N0ejVobTRUS2xxY1dPTGdsZkZhNDloSFlTODNJS2ZUc0RaNmNMU1RwQkRNN092ZGNHZXFGeXZOTkRsanVQT2VUUkNpajRGSHlMVUJ5Nmx1Z3B4TWZXSzMzN2Q5OWMxZ1VqcDdoZld3SmV6N1l4N0RaT3RQMHAvaXJvbTFKS0hrS3BlK0NSZ2RxTWpxMHRtSzF1dnh5RTZZbXVTMi9NTThFRS9VV0E2cnBjRFpROTJINnZhcnRZUnNKc1htTzFkdmE5TVVSL05MTmhMR2FWdk8rU0R2WGNjTDhqVUR0ellEb0FUTG5xZzB6Z1FxRzJCTTYvK1pXdVZWc1RRMUx1d3AxSk1LaitieXFWZU94L2lkOGV2bGdqN1RKSG00TGNybjRGOXhkNWMrcUVjdHJiRDNsVlRmbEdXQ0hiNk1JNmU5eVRlWlUvUCtCUDhvNlJudVIwQ0hIWGU4NHdENVFTeDVJRmo0WjJDUDJJbWgxOVlxcmVVNGp1Ty93RkhueGJpbXBiOG9ub2tvUHU3MlAwby9wZTl1dWFkOStwUTIydUh5aUVKNy96MkEvM1ZuUzNwSjNjSWZLckliV3gxbVExc2ZYZXI5VjF3QnU1eE1kZXBLZW5IQmVUR1VvSTFLTHo0SjRQelVXeGJLSnNORUhDSkhrMUZaUTk3TjhhbHJMYjJGNXNDWVUwR05IUG53aHR3eVBIanVOczQ0QXZXbWk3RXJOaW56cXM5Nk4xZWRLanUzSUVNUExFdjZ2ak1KNml2VGE4K1lMS1pEUm8xSVMvd1hONmFVSSsyMk5xVzU3L3R2anIvVldOcHptcUo4ZGo5dU1uVkZpYWJuYm42a0U5dy9pck9oYmNZNFlWbkRkaTc3dXlnM0d0UFRrL24vQ2g4dDdEV3o0RFA5cmZBTDFSY21zczFyR01DaTMweHZwSlg3SHNWdnB3YnNuT00zbC9PbDFDZkZEaFB6dTl5ZHBqZTZGR2NlZTdqOEIyL3VRTnRmKyt2MXRxZVY5eG9kZVBSNms2UEYvai9KeHovYXdtYzVmUEVJZXdzanRPVVpDbDd5dUZFei81VE9KUzdPU1hKKzhtUGJ5NEUzR2dmMGdpN2FlUEQxY0ROVlVPSjluQjdBM1hUWGI5QU54ajBsOW9tSWU4WlR0NVhwNStSczhFNy9CREZKTnk0MnpwTXJRdENnMjlJalU1OUhXVnBIR1YxNm9mNW9YNW9OeHVBMmdCVWR0ZGlGekR2ZGg2NjlGZkVuV2ZXeTVrZjM1bDV6YnBOTW53VkZtekp1eE9sQVlqRExvNno0bkx0ci9vUFFPc2xhUDBNK3FWbVIyQnlsdUQ0WjRQa0FnVEFCRUVVZ3Bnazh6M3NnQ1MrMGVvMHBJY0xYQkVZU0JGMnExVGREckxiT1dqeEE3d2lSWUw0MEZsUEEwenB6d2dHOWM5bVZmZGk5UUtnUkdqRTRRck1LVm9DNHZwNThKY3dTNGhiVUlxVEZmbExtQVZDQlprNkNTRmh5dkx0NGhpSCtzd3J0aC9peEM4OXRQZERrRk04SGg3YjlYYVRQVzJoRVJRcE0vLytydTEvVFkwaXFEZjFCYXJVSzlsVmhWVzNnME9jcm92YlJreFhFYnZ3WFdPeDFXYTN4cGptekQzTlIxbG9TNUxuQ1c2cjNXNWlnZThRVDdJbDBucjAydmFqS0xsQzIzTnNpUmNlbmJiWEVyeG1Deis2cENWMTJxTEFQMHExYi8vNTlvMVZHeFRnLzhYc1F2SXZHaTFneVczTGJVbDI1TlpqcDBtOHRpeTFSYnR0dDJYSEZUdVBva0NhYnR0cGRad085c1JtUjJ3eGYwQ1BTSVIyVzdJcm8xMmNnTlAvTDFhWG9uL1JiREFTV25CSGtscTJhM2RrRDJ5ME93SjVkQnlIRUFrM2VWNFdKYjdUYnRwOHArTmhIcmQ1dm0zTDJQRUUzR202aGRuZnZwVXM0ZmtyWm05MmpCbDBaRytJazdHTDh3U0lHbGltckllcW9MNDM4UDRUdzNQdjRYVjJ1VDh2NGZNRXMxN3VCdklQOE4reDQwUjVtTEdtZTF4MlpYOUdyUVp4WHBSdzkvSnducTNCZ2I1VENHeHd4dHBQMlNVKzZBeHRsQjQ1U3J5TUkwR2NIYmtzNHZLVWNEQ0RjNG1IYzVweGVVaEptdjRCSEFNS0NYR0p5NEFKVjBTRFcvazdFbkxGZHdUb2oxbmNYUTZuQld5YytLSGp4NWh5a1ZjMEZCOGR1TXQzRXZZcG9YSW5jTGRmRUZTbENqUXhGdi9nbC9lVUFIOFY3c244akxLSnZRUTBBaDFCU05uSnNVOEQzTitpd25PWS92MVRpRFRXWHlrMEs2Zk1zZ2owZHk1UTZkazVQK2xpNE5PY3VweE5idjM3czg3OGdSTlltbDdyN1AxYVArK2svR3owS1ZmKzlOUE9YVXBlUmY5QjNwODNXdWxuS1RwaGxrR3dMMk1LYjkxSURIQUlLMjd5UXlGT25LZDNJWDB6dWJJTVBvYnVNempIQmlma3Q5eFBTQUR1VFcvY0dlYUJYWWkvdUJNMkM0VTNnMXR4RXhKRXlaRkwvUk9remFUN09XRytJMVYvbXR4SjVmN21oeHpNdlpIdUE1ZXQ3c1VMdk5nczRya2ppUjJsNUZZTFZEVjlGSzdua0NzaFY4M2dnc2dsVnhtdzY2RUVoN2N5UE1oZVVyRWJ4V2xteGk0dXZsNEtMYUJOdnQyVytTKzFOVTVmUW1EeFVacm1KRDEvdjh6alZZSkJ1cEpFQWZzTytnLzIrWk9SZmRsc1JOV080YitoYUVGTDJCMEFBQT09In0=",
+            "DCOS_PACKAGE_FRAMEWORK_NAME": "kubernetes",
+            "DCOS_PACKAGE_NAME": "kubernetes",
+            "DCOS_PACKAGE_OPTIONS": "eyJtZXNvc3BoZXJlX2t1YmVybmV0ZXNfZW5naW5lIjp7InJlc291cmNlcyI6eyJjcHVzIjowLjUsIm1lbSI6MTAyNH0sInZlcmJvc2UiOmZhbHNlfSwic2VydmljZSI6eyJzZXJ2aWNlX2FjY291bnQiOiJrdWJlcm5ldGVzLXByaW5jaXBhbCIsInNlcnZpY2VfYWNjb3VudF9zZWNyZXQiOiJrdWJlcm5ldGVzL2t1YmVybmV0ZXMtc2VjcmV0In19",
+            "DCOS_PACKAGE_SOURCE": "https://universe.mesosphere.com/repo",
+            "DCOS_PACKAGE_VERSION": "2.6.1-1.17.8",
+            "DCOS_SERVICE_NAME": "kubernetes",
+            "DCOS_SERVICE_PORT_INDEX": "0",
+            "DCOS_SERVICE_SCHEME": "http",
+            "MARATHON_SINGLE_INSTANCE_APP": "true"
+        },
+        "fetch": [
+            {
+                "uri": "https://downloads.mesosphere.com/java/openjdk-jre-11.0.3.7-hotspot-linux-x64.tar.gz",
+                "executable": false,
+                "extract": true,
+                "cache": false
+            },
+            {
+                "uri": "https://downloads.mesosphere.com/kubernetes/assets/2.6.1-1.17.8/kubernetes-scheduler.zip",
+                "executable": false,
+                "extract": true,
+                "cache": false
+            },
+            {
+                "uri": "https://downloads.mesosphere.com/libmesos-bundle/libmesos-bundle-1.14-beta.tar.gz",
+                "executable": false,
+                "extract": true,
+                "cache": false
+            },
+            {
+                "uri": "https://downloads.mesosphere.com/dcos-commons/artifacts/0.57.3/bootstrap.zip",
+                "executable": false,
+                "extract": true,
+                "cache": false
+            }
+        ],
+        "role": "slave_public",
+        "env": {
+            "COSMOS_ADAPTER_CPUS": "0.5",
+            "COSMOS_ADAPTER_MEM": "1024",
+            "COSMOS_ADAPTER_URI": "https://downloads.mesosphere.com/kubernetes/assets/2.6.1-1.17.8/mke-cosmos-adapter",
+            "COSMOS_ADAPTER_VERBOSE": "false",
+            "DCOS_SERVICE_ACCOUNT_CREDENTIAL": {
+                "secret": "serviceCredential"
+            },
+            "FRAMEWORK_NAME": "kubernetes",
+            "FRAMEWORK_PRINCIPAL": "kubernetes-principal",
+            "FRAMEWORK_USER": "nobody",
+            "LIBMESOS_URI": "",
+            "MESOS_AUTHENTICATEE": "com_mesosphere_dcos_ClassicRPCAuthenticatee",
+            "MESOS_HTTP_AUTHENTICATEE": "com_mesosphere_dcos_http_Authenticatee",
+            "MESOS_MODULES": "{\"libraries\":[{\"file\":\"libmesos-bundle/lib/mesos/libdcos_security.so\",\"modules\":[{\"name\": \"com_mesosphere_dcos_ClassicRPCAuthenticatee\"},{\"name\":\"com_mesosphere_dcos_http_Authenticatee\",\"parameters\":[{\"key\":\"jwt_exp_timeout\",\"value\":\"5mins\"},{\"key\":\"preemptive_refresh_duration\",\"value\":\"30mins\"}]}]}]}",
+            "PACKAGE_BUILD_TIME_EPOCH_MS": "1593606689559",
+            "PACKAGE_NAME": "kubernetes",
+            "PACKAGE_VERSION": "2.6.1-1.17.8"
+        },
+        "secrets": {
+            "serviceCredential": {
+                "source": "kubernetes/kubernetes-secret"
+            }
+        }
+    },
+    {
+        "id": "/infra/consul",
+        "cmd": "export LD_LIBRARY_PATH=$MESOS_SANDBOX/libmesos-bundle/lib:$LD_LIBRARY_PATH; export MESOS_NATIVE_JAVA_LIBRARY=$(ls $MESOS_SANDBOX/libmesos-bundle/lib/libmesos-*.so); export JAVA_HOME=$(ls -d $MESOS_SANDBOX/jdk*/jre/); export JAVA_HOME=${JAVA_HOME%/}; export PATH=$(ls -d $JAVA_HOME/bin):$PATH \u0026\u0026 export JAVA_OPTS=\"-Xms256M -Xmx512M -XX:-HeapDumpOnOutOfMemoryError\" \u0026\u0026 ./bootstrap -resolve=false -template=false \u0026\u0026 ./operator-scheduler/bin/operator svc.yml",
+        "cpus": 1,
+        "gpus": 0,
+        "disk": 0,
+        "networks": [
+            {
+                "mode": "host"
+            }
+        ],
+        "executor": "",
+        "healthChecks": [
+            {
+                "portIndex": 0,
+                "path": "/v1/health",
+                "maxConsecutiveFailures": 0,
+                "protocol": "MESOS_HTTP",
+                "gracePeriodSeconds": 900,
+                "intervalSeconds": 30,
+                "timeoutSeconds": 30
+            }
+        ],
+        "instances": 1,
+        "mem": 1024,
+        "ports": null,
+        "portDefinitions": [
+            {
+                "port": 10014,
+                "protocol": "tcp",
+                "name": "api",
+                "labels": {
+                    "VIP_0": "/api.infra/consul:80"
+                }
+            }
+        ],
+        "requirePorts": false,
+        "backoffSeconds": 1,
+        "backoffFactor": 1.15,
+        "maxLaunchDelaySeconds": 300,
+        "dependencies": null,
+        "tasksRunning": 1,
+        "tasksHealthy": 1,
+        "user": "root",
+        "upgradeStrategy": {
+            "minimumHealthCapacity": 0,
+            "maximumOverCapacity": 0
+        },
+        "unreachableStrategy": {
+            "inactiveAfterSeconds": 0,
+            "expungeAfterSeconds": 0
+        },
+        "killSelection": "YOUNGEST_FIRST",
+        "version": "2020-08-07T16:04:57.569Z",
+        "versionInfo": {
+            "lastScalingAt": "2020-08-07T16:04:57.569Z",
+            "lastConfigChangeAt": "2020-08-07T16:04:57.569Z"
+        },
+        "labels": {
+            "DCOS_COMMONS_API_VERSION": "v1",
+            "DCOS_COMMONS_UNINSTALL": "true",
+            "DCOS_PACKAGE_DEFINITION": "eyJtZXRhZGF0YSI6eyJDb250ZW50LVR5cGUiOiJhcHBsaWNhdGlvbi92bmQuZGNvcy51bml2ZXJzZS5wYWNrYWdlK2pzb247Y2hhcnNldD11dGYtODt2ZXJzaW9uPXY0IiwiQ29udGVudC1FbmNvZGluZyI6Imd6aXAifSwiZGF0YSI6Ikg0c0lBQUFBQUFBQUFNVmIrVy9peUxiK1YvejQ1YzdvZFlnTklZbGJHajBGZ2xrR1RQQlNnSHRha1pjQ0RPVmx2TENOOHIvZlUyVkREQ0VrdWZOR1Y2M0l4cTQ2eTNkT25mT1Y3ZjZyRkpyMjBweTUvZ3poS0hZRHYvUzlkRlBtUzk5S3Z1bGgrR0VIZnB3UytMMDYzQmZLZCtVcVhJa3d3V2FNRHhQNWJ5WFBkUDBFL25BRTQrWkpFc2JmcjY5bmJqSlByYklkZU5kdUhGOFIwN3AyN0NDK09vaDJjR3hIYnBoazRodnNNbWVUTkU1d3hMaysxMzdndk1EQk1ESXhaM0hwKzQ4U1g2N1Z5aFc0a012NCthMFVnelYyZ3AzUzk2bEpZZ3dYYksvMDNVOEorVlphWXl0MkU3ei9PWTNBdDNVUUxVdmZreWlGb1dHRU8zNmNtSVRJUVlMai9iZ3dpSlBqNjZYSHh2VkE1VEt0bkJ0ekZnYm93RVkyQ0R2Lzg0Y1AvNUxId0U0OURFaFFsNzV6bndPQ1R1ekVjWXJqejg2ZzEyQjRLYk5VOTkzUDJKcjZCMnZMTUpPNE52YmpWNTg5MTM4RURjcEpiQ0hvQW8yNVowWm1NcWRYL2lxdEtnOWgySWNvbWZZY2E5Z0xpVWt4TGdHMHMwNmpHeHFOemkwYzczQlZKclp2aEpPS25scWVsQmhqUWV5NDY5ODdqUWQzVXEwTDloYkdQVGJUZmlPN1pvMVEwbGtFczc3MnNKWHphK2FvdG5OYVVqcXBvQjI3cDJiWG5USElkdC9xWWRmOWdwNktzS1R6T2g2NnNWdmkxbW5VKzRvazlsVzlxdzVSRjB5cTExRnpKbmFiZ3FUem9qWVc1THEyVkJxYU1GdFpMVUp0MmxuVmZqTHhVV3EwTnFSWDJZU1RSYkRVbXNwVWE1S0d2cFRVRVJLSFE2UjBCdHM2d2UzNnl2YUhNMDFIbWliSVUyMHA2U295cERFZjF0RlNlcDJqOGN2Zlc1dGRwNkhJQ3BLZmRFSFVobnF0T1Z5S0U2YkRFNGhkRVhlOVVWZXdQQ1UyVkRFMlI1MGptMzUzYXp0cnU3enJ0QTYrL1Q1RVJuM016NTgwWFJlN2pYbHNieDhTby9HdzNOdWo4OUpBYVhhZlJnM3hUNk1WLzltcmhGdER2UStMdHF0TGFUUkVZa2ZqQmVsSlZlNkt2N3VxS0JiSDZrM3c3M0h2QzJEZFVJbzJyQ1llU1gvWGdpVWIxM2p3dXU0YlBVKzZwR2hQYU8zMjBEeXhkeDFCWHZJemVvNGY5VTAvTzU4TVhLRmpqS1MxMGthSjNSUlRyWXA0cldMSXhrZ0FXVVN5L2U3S0ptdTMwNWg0bmNZTjZCVlhUbHZtYlU5YWcxMWJZeXl2ckxaQm5rYkczR3JMQks3eE1IZHR0U1RlMEFSdk10cnNESlhhOTVEMkt1TGFHSGZuRG1EYUc4c0xzNFdXem1nRCtTWkNQdDZzckdxZGdGemVxblptZHRWWTlIeVNXSTFPM0hBZklNODI4NG1IWXBiYjdaam1JRjBUelNITkxWNEdUSVFuamNqVElhcDN4NEloNlVUdWF2eU5PM0FocHhkTnQvZEExeERNV1NxUE5GNHdUOVowY1FENWdiUWxnYU5TMTVycmJIeTdLeGhxcmhkeVhXbXlQQm9PZGJrMzFCM0lPVU1kNm9LRWVGRlZCWEZBejlsYThKTTd1NEsyamtjV2hscExKeU9CVE1kOFFiZFExMm5lTnNVQnJJZXV0blQ2Q2hLN1lMY09PZm9JNTNWZGVyaGtnNmFnN2tqVlpiQ2hWb2M4WUdOeE5ka0JyaFZ6SkpPZVY1dERIb3ZUUzNPRitwTk9sS2tLNjBKQk15YWozN2cwWG41VW0waFdWRllYQXFldHJEc3o4S25Oc3ptNEdpOEtmaDlzR1Zla3hhUWlDcGF2VE9IK3d2WVFEM2l3K3JIL2ZSTFB3OXhodFV1TUZrcWRGcGxiamVJWStQUGxsVFB1Z3E2M2RlcGdCeExua3dxTUc5WDRNZHlmZ0R5bkRmVnJsc1ZpT2p5eWYvVlYrNDFSclVKam50Vm1zSW5VNjBNK3FTczhvclZwanhYWVZnYzdrcmxSMFpPVFdrMzlmYzJwazV5Rm1LNG5Jem1hakJ6U0d4dmdueHhhbGRwUlhHSHRQNnE4MUlhOGFTQ2QwUHFycTVDTFl4NE5OVjd1akhsQlkzbTVhQW9EYlhMVDF5YWIvczdlOW5lZDE1d3MyRDBrcUV2ckwyb1NxSjJpaHFST2xodUxoMjIvd2E4SDhDY0x3NDI4Q05iOVJiQ1J0emRVRnQ5ZkxBczUvcCt1amFONVNPZVJlbWFlUU04dnpCdnFzSmFIUEFGYzEyL1hoci9QRXpRRmJCZFdGZktyZlJTUGxrNWpoNXduZlpsQVR4SGJZMzRqb1NYcW43RWx0aXJPMUdxaGlqSGFITVZsM3hQTzFTS1UxYUs5dm9IR0t4S3RYMGl2NlhzZGxpZUNWN1Z6OW1YamhYb2Y4a1lDUFFOMDRBUkphbFVVOExFZWcyOEVha0RxU09JQ2NtWUh0V1FPL1I1eXR5Q3JuZHgxaXYzZEkxdW5qZWFXSktiR1dLbGExVzQwcmlDSVV6YzJSb3JJMWd2REcwRk11N1J1alZUVTFaRXU5YUVXU1VpaW1NVVo1dEJIQ3phZkdaZWNySkdQN0hoYjA5Q1NxRWhDZFUwU0J3cFN4cHJRN1ZGY2tPNUFQUlVCbjY2a1NmMHpPV0NFdHE4STBKZW1GcXhucHlKdVRVRmNXMjNrQTBZUVR3blc5bVpYekxHVCtsQXh4MTNlR1VreDJBVTF4Vm5aWGpLRmVnRDlhVU1NaU5jaEQ1WWkxRmZ4VVplUWRocGJ1NDEyeDNsY2UxS2FVRHQwSkorTVRhQ2ZIdWRYSnJlcElybDNNblpwanVYb25GeWxTVFJZSC9vSTFhVnpjOFpWcFdhM2NveG5yN1VCSWRwcnhCSDBBbFhWV2E3S1NwWnpaRktacnpxU0VwamovZ3k0NU03YzFrTjdXd2ZPaGpSRkg4YWR0Z3k1ZzlhQXF3L2NJZTI1akFlc0xNakZYaVhuWVZWNURqek10YXF6RTI3QkoxQnZkMVpsVXpubUVmV3EyU0xBMitxODdTTUNuR2xwYmVzN1dJZkVianpzNU1YRG1sMkQyTkFjM0dPV2N5S2tMNWY3bkdEY0plc2p0YmtOT2VpMCs4Qnp1K0JEN1UvYjB4UHdhZHNiT2JmSGVLS0pvc3NJTlVWMUxDQlZQZVJ3bC9vajJCN3R3ZElPOGdWNkc5UXJqK3g2d0pHTmtTeGt2Q2NNN2VNMTNkQjRVUWYrQWJ5NVBrV28yejNVR3VwL0ZXM3B1cGlNWmNoaFpkZnowUmJ3VG90WXZaRjVzclkvNm9udmN3enBFWGdTMG9BckRJV3VCSGswZ041UTE3SitUUHR3SmlQTGgvZDY5MnlxSG56ZGMzSVo2aGpTbW9kMVlRTy9DeWQrZHc1NEVWdUEyazJTdTNHajY1bkFEOGNnSDg2QnAzY1RHak43SzdqZ3d4Smliak5PVDlhcmpMdkwyVzlQZ2RvcHM1NU40K20wbDRDQmFIZmNEZWdSVmtZYnhTREg3aXhDQzRNdTFwY1I3UmQxdUE5OEZvbVpubW85QUorQUIyVHlocFVOelpOd0lrRGY1aVdJNTV3QU53Q01nZXVPa04zeCtmaElIdkJtNEEvSk9NOTFHOFpEVEtkR0MyUUxJdU5SNDNOeXFKMStIYkNnZkVHaHZmOWdxMWxCdFJ5UFA1MnFNalhHOHpXczNSRDhoMXhXOHJtVWk2TWN0NDVnalVoS01aMnFHNHBwWkl3SmxVZDFiRUZmWXJlVjBBRzd3RGFQNXB3cGlVdUg4WFN5c3NDSG5yUjJIVStLSFdvYm5iZm9ydzh5a1NDT3g0Snp2djhoNExvc1p4NWhIeWZsOVI1NmtqRE40N1dHUGNBVzhuSUpPTzJndHNRMHp5R0hWTDBwMThHZkFPb3FENy9CRmtRS2EyYWZSeDBrS1VQQUVOYmpYSUk4N1VKY2RDWG54Vi9IWG4rdjVuK0dFMUs3NlA1M2I5dG5hODJadkg1VGV3NzdIUVhWK3hwUXA2eGVBS2JDOHN3ZUFIS210VmxoSkxMZUQ5ajUrSmgzSXIycHdQNGNYWmJqbzdWQjkzRm41T3hqRGZVQjlrNm9uOWZDMlNmOHpUakphSjFnajZ4UC9OT0gwTk9HdkFHOFMrcERiOWRvclFWT0IzMUxiRU5PYVNyVVNBWDJTam9oUThncjJQT0pQUVVkYk4vTFRvdHIzNkR4cjVBMTR6UFZibzNtTzR5YjByVjBWTnVKVXRmNTVGRlpPdE1oYkpGaDN5TU5xVjlJQWRvT09PazFUWWU2anlSUjBwYXlDcjBVK0RiczVmaWNFK25EaTNaUURDMWZYZ09uNFU5dEtmS0hRcHhPOFJnQ3o5R3BYVG9CWHJsL1RnTTFIZVFLVmlQTFUvaWJzdWNXbjVXMU5JRHJTb045MzRIOFR1MHFpaGxmOWd6S2lkSnhsVDViVUk0NVdGUFNWRjV1S1lJSWUrZk5OTWVHOW84V2xJUzZkdDQrYjF4MTVoWVJHUTZYOGMvMnFYUXZvQkJ4RFBqVDJOZUh5NDJrTkQ2V2ZjUmZQN2FiMVpJM0dIaHozbW5YUDQ4blA5ZVJWTDlrWjFaN01qeS9GdmRNdHZhT2pic3Z4S2lwa2Y2YlhEVmF0Uy9La0MvNXVZUmpocHNrRXVpSkx2VHI1V2ZpcmREK3VuMGp6N2Y5K3VJTDlyVjFVbis4dERhTmFuYzlFYzdtQ3NTaExtWjJkaG1IbzVpUDludjl2OFBOUHVTSzlMbWh3RS9HbmNTb2hrZCtmbEJYZDhESFNjWnRPc1hhK2ltYnp6NlRIU3R6MnhWODdIL0JmbCt1VEtwZjhYY2ZYNEhHQmZpZXM4ZmZPZURmY3JhVGtVTDBxcktkQUI4eXFsRHYvY016b3dUMkY2RTFSb25hZ24xald3bUdGWWsrTzZFMWw4WjhmY0RBRSthNFJSSm5KRHdCMzltZWpxTTQ1MXpWTlEreTVyRFBTWTdpZjNqbVE1OWp0YnNyNFBWZ2UvYThZYzk5VkFsWXlPc3pOV3JuR213UDJOcDF4VXBmRllIYkFLZHF6VjVqUko4clZidkEwZEVRYWhuMEJVV0RmY01LOWtkTS8wQXIrSkk5dytkcHZZZTkwZEc0L3U3aFNDL05ieFY0aFRHZUhlTkJuL2NESHNaSUZCd0p1RHpVRTZQTjZzSXVmM2Z3aWx1VHhRbjRQdUxOc1VFVVR3cUJZMEkrOWcvWTBUVkRqK01jUTdiMm14QXZqNlRtbVBXNTkzRmt6OW5wZTR0ajIyMVA1QzFhQTdMNndrK3FEMGQ0TWE2ZDhjcTUzVm9lMzh2Mzh1dzUzWlk5TXhpT2Q5bnoxUjdFM2xSclo5K2xEQmF6ZGNldGkwYytEVU94TWZ2dHQ5SUxmVThYQjJsa1kvck94b3hqbk1UMExJMWNkc3plRDEzdDNMRHd5aTUvdFJlWDUyWThkKzBnQ3RrN3FQeTFFM3NCbVA5NFpqK2VpZXVubTJmVGMyNXZ5bFFVZmYwMngwNUtjSFFpR3R0QnZJMWh3VjlGT0F6S2NiVnNldVl1OE0xMXpIVEV6dkxhakJKM2F0cEpmSjI5NkxzT1FoeVpTUkJkSGFUbVduTHI0VEIxWjdrV1VPSzV2aHRjV1VHUXhFbGtobVhIanJ5eUc4ZG1HR1phWGpYa1BtV0g4aUlPL0xLWHY5TmlyOGNzRCtDTHI2elVkd2krU3N6b2FyWXJ1T01FYTU4RXBoT1gyYmh3amlQTU5Kek1QUDE5SlpRRm9jeVhRV0FaQkg0cjRRMjJVK3JpTVZ6dnlzL2ZBM29lR1A0V3NMMjBmVEJXOXQ4QkI2YVh0eDU5Vlh1WTlmOWo1cXNSbVoyTDZDc1FMOHlWZVIzamFBVkpSbWZlcDhKdDVZcWw0dFVHRWpISDlvV2x5ZjYxTkgzTkNWZGN6NXhodGdBZ3ZmMnIyRE1KT2YvT21ucVF1Wkc2MXhZSnJHdlBwRyttcjBPU3psendpbHJnMmhoT0l2dmE5V2JYbWNUczZwV0RwMlpLa2t4RE9mUm4veGVaNjkvb2UyZndsNDMwc09PbTNqK3FQRk54VmpzeG94bitSNVV6RGFlNll6dkMySS9uUVJJZlltSVRsd2JFY24wemNyUGdyRjBmd3M5T04vZTNWN2MzOUd3SkYrbDdacGJqcGtXb3ZEUWlmejhkMmQyOStXQk5HVlJrUlNiQmZ0S0dXbGo2L2dPS0tKa0ZvQ3llbTVYYUxmMDB3aVFwaGZDdVp0NDZOYkY2ZjNNL0ZlNnQyNmxkNDJ2ODlNNXhzSEEvdFlCUjNOWkVxMmJkVnU0ck5jdmtzUTEvOTJhdGNuL3IzTnhhMDlMTHo1Y1hXbk1nZ2Y5TEhtZXI1d3MraTdjaVg2M3l0bE56N25qaHpyVHVuTHNiYUZPQ1ZibDNxdnowWHJpenA5V2FiZDA3MWgzUG16VWJZOHVjQWdRT2ZaZ3Q1ajQ3WmdTaC9tODVuV3Yvdk5kMnRTSTZ0N3hwMXFiWXJONVZCS0ZtVisrRWUrSEdGRzZFNmUydFVMc1hSTWVxQ1dLMVpqbThhTjVYYm12MnZYaDNEME5ObTNuOThwSlZKdGE1L2lvbDI1Q0tEcXdGdGhQNlRVZEV1MTZTTDRUYzNITURqeitmeWI3NnlJZHptZmcwWWwraWNBV1JwL0t6ejMzK09oR216VEZINzNEQmxFdmdmQytXZlVMaTIreVRuTXdhcU9LdVAyUFdzRlZmL0hRb2NSTkN4Nmo1YktZTGZFOWpXcERQNmFSM1FLR1pIR2xkdTRSd1VlcHpabHkrcURtQ3RsTFFxMU05TDkvMkdENmJ0aDJrZm5KZTlWNVpQb2liQmhGM2pLbVpnbEYrNHRvTTFES256ZDJZZmw4RDlzQTFRclljd2RPRXcxNlliTGtrb000d04zTDd1TlFuT0k3ZkVVY0YrUmc3MktHQ01jY3lqcHU1Syt4ek5MM3AvWkN5T0FkUVlHSkRjTjkyUTVQUUlQWHBPdUFPSHpoZGh1a01Kczh4aHNKOEJocTVrQVVxRzhPcHdDOGd3eUl3RnN3M1NieDM5cE9RUWZGUGljTlp1SWpYWjhHNTdOaHI3QnNIODdqTXRTeWZmd21ZWXliNWxZS3djcU1rTmNtemp4T0syalAyYWJseDNxTFFaRGU0ZkR5WGo4L1U1K1lBcFFIdTdCZnRZUitrblZIenVUVjNvb3lDdkFoWXRYb2ZBRnJoemptV05lNW5ZbHFZeEc5Vjk5aDFxb0dtR0QyZU15QVRVdVlhVUY5TnFLTWgvU1lNOG5HSnQ5K3pkQTFOTjRyTG5BUjVnRGVtRnhMOG5Wcys4OTlYei95MzViTUFSK0ZidVZ5R2N4L09MN3RDM1NEQjdKbmdGU2JuMFlMYkhMdk5NbythZkpSOTUzSUYrNVJ4L1NnTkpBbCtTUS9hUXcrT1RVVVpLSEFjUFNneUhEcXlOSUREWTdPdXQrQ29LUStOSmh3ZmVqMzZ3ZUdyaVd3Y2JXSTRKTUgybVJMYUJNKzJiNDNOdjhYTHhuSDdjV1h1QjRXUUVFeStVWnNoVjM5ZU1Iay90c1FXTHd3K051WndteGJZMEFFTkh4dVVqZnVIRE1xdnZiQ2Q2SitwRzlHRjlTTnJPSGtQK0FuM2ZQcUY1M3NHaG9GenFaVmRicDJIWXIrdkNUS280cktycDkxVFRqMExXZzhzdlZmTmJDRkEyeWx6NnFGaXBUN2ttMS9JTEJlSXd3eGNLWGhlWlY5VHVoNUZxUW9laHNTME1mMHM5Sm5LQnF6ZFk3T2U5dmU1d3YxVEE4OE5pbG5lVXdCaDBUWDNDKzdIano5Szh5Qk9LTkIvbEw1eGY1UjB1VFBVbTMrVWZwNkw1bXZBUHBoSTl4Sm1nWWZBdHBIazlmbDZjd1U3ZVh4Vk1PMS82WTZhQmQ4TzA3am9idU5KZnljSWhhRFRRWG5XVUtjTHdmWlpwSXFHVjE2b2NWNVJSeDk3UVFRcnpkMUJ5ZS9YZjcya0NxWWVxZUorY1gwdW0vTitqQVcrY2tOWHZoc3ZpM29mNGZmbnRJYjBDOXVZa2s2T0N2bFBMT0Q1M0lMbmJOU0pHZlFpOTBNWkRMUnZYSCtneTlyUE4vYjBHZE5aQlNRRkhyMDNBWllZUGw1ellBMHJySVcxVDhYQ1R5YjNlTm16TzZlTGZoOXZsZ3RadEhMd2loNzhmRGw4MlAyUEZJVHNrY0Z6R0VSbmlJN0tibkxLVTROakF5NWhmMTlsMklPOEtmUlUveDJKR3FOTTBaVHJQY2lma2luc1phNC9sam42cE16S3FjeVBTTTQxeElPUm5aeUJUem1ZeVZTVk9mcUYrWGZ1a1EyZzM1UXpHZ3AzTW9hK24waE5td0w3eWdPMG5ydjJuREc0SU9Gb2FubVE1SXpuSXRqdUIybk1RUkV4YVM4M2ZZZE5qakJoeEFLR2hRR3JjOWtPQUNkcDVITTRpb0lvNWlqSFlNd3h3cEFZQ1ZUQWkxeU1QbjRBS09nTzhnSzBiVTE3NGg2ZU9wK0F0c1pTNENEdlM3RFNXUmNnUGR3K3hwWGVpckRwdUQ1bHloU3NPVFpKTXVmc09iYVg4V2Zkanovd1g2VUFsTG1CRHh1YWxPNDNYT0Nqa2VuSHpDTHMyOUUyM0pQeXZkTWZJRVVUMi9IZlUvd29xNS9BK3pZcmQ3bVVMOEVOa3pLMFB3UFJMQXJ0Q3dqTmFJRmdBSTN3YXpZRFVEUjQ0R3FGOVdRcWhMTzJ0RlN0NkM0a29IdFhMZzZBM1NlZ21ZNWxvV1c4R3ZZNmdXY20rUjV5N1VKRUU5Z25BZEZPb3dobXcwV21GZkFPRGtFQmFvSTNZUUM3cnFhL0FsSzVlV1J4bzllekMxRDZObEQzTGxNVmFuRFI1eS9CeXB6OEdOZjlMZ2kyWVdua0ptZllhUDQvZi9ZRDRDUkpBS0tQQy9vc2lHTTNmSDdOeVdmWWk3eVZiNWt4dnIyNWdtRkFsUnd1b3o0VUtRdG5ZTEtRTVZuRi9QNWxobjFheEhBZTNYL2xQUWgwd0oxLy9Wcm1PbE5XMU1EZTEzTDBWZzdFTFlldHNGRGUyZkVjRmxyUnFZKzJwV2RYNXk5YVQvMzFFNEU1NmRUbklmM0FzSituVW9xZDlyUlBudmE0OS9wVHNWaWZLN1JIMWF4UVg4NFVpZUtxUHBmdFA5a2pPV0xHaWM1MlJNNytmMFhOemZoM1AxajcyZi9QMmw5TncxbGtRaVNrS0dCa2lCRWdHSlZkMVlMczJzdS9BY1g4S254bE53QUEifQ==",
+            "DCOS_PACKAGE_FRAMEWORK_NAME": "infra/consul",
+            "DCOS_PACKAGE_NAME": "consul",
+            "DCOS_PACKAGE_OPTIONS": "eyJjb25zdWwiOnsiZG5zX3BvcnRfZW5hYmxlZCI6ZmFsc2UsImdycGNfcG9ydF9lbmFibGVkIjpmYWxzZSwiaHR0cF9wb3J0Ijo4NTAwLCJodHRwX3BvcnRfZW5hYmxlZCI6dHJ1ZSwic2VjdXJpdHkiOnsiZ29zc2lwX2VuY3J5cHRpb25fa2V5IjoiIiwidHJhbnNwb3J0X2VuY3J5cHRpb25fZW5hYmxlZCI6ZmFsc2V9LCJzZXJmX2xhbl9wb3J0Ijo4MzAxLCJzZXJmX3dhbl9wb3J0X2VuYWJsZWQiOmZhbHNlLCJzZXJ2ZXJfcG9ydCI6ODMwMH0sIm5vZGUiOnsiY291bnQiOjMsImNwdXMiOjIsImRpc2siOjEwMDAsImRpc2tfdHlwZSI6IlJPT1QiLCJtZW0iOjEwMjQsInBsYWNlbWVudF9jb25zdHJhaW50IjoiW1tcImhvc3RuYW1lXCIsIFwiVU5JUVVFXCJdXSJ9LCJzZXJ2aWNlIjp7ImRlcGxveV9zdHJhdGVneSI6InBhcmFsbGVsIiwibG9nX2xldmVsIjoiSU5GTyIsIm5hbWUiOiJpbmZyYS9jb25zdWwiLCJ1cGRhdGVfc3RyYXRlZ3kiOiJzZXJpYWwiLCJ2aXJ0dWFsX25ldHdvcmtfZW5hYmxlZCI6ZmFsc2V9fQ==",
+            "DCOS_PACKAGE_SOURCE": "http://minio.mysite.com/artifacts/consul/consul-repo.json",
+            "DCOS_PACKAGE_VERSION": "1.7.3",
+            "DCOS_SERVICE_NAME": "infra/consul",
+            "DCOS_SERVICE_PORT_INDEX": "0",
+            "DCOS_SERVICE_SCHEME": "http",
+            "MARATHON_SINGLE_INSTANCE_APP": "true"
+        },
+        "fetch": [
+            {
+                "uri": "https://downloads.mesosphere.com/dcos-commons/artifacts/0.55.2/bootstrap.zip",
+                "executable": false,
+                "extract": true,
+                "cache": false
+            },
+            {
+                "uri": "https://downloads.mesosphere.com/java/server-jre-8u162-linux-x64.tar.gz",
+                "executable": false,
+                "extract": true,
+                "cache": false
+            },
+            {
+                "uri": "https://ecosystem-repo.s3.amazonaws.com/sdk/artifacts/0.55.2/operator-scheduler.zip",
+                "executable": false,
+                "extract": true,
+                "cache": false
+            },
+            {
+                "uri": "https://downloads.mesosphere.com/libmesos-bundle/libmesos-bundle-1.11.0.tar.gz",
+                "executable": false,
+                "extract": true,
+                "cache": false
+            },
+            {
+                "uri": "http://minio.mysite.com/artifacts/consul/svc.yml",
+                "executable": false,
+                "extract": false,
+                "cache": false
+            },
+            {
+                "uri": "http://minio.mysite.com/artifacts/consul/consul.json.mustache",
+                "executable": false,
+                "extract": false,
+                "cache": false
+            }
+        ],
+        "role": "infra",
+        "env": {
+            "BOOTSTRAP_URI": "https://downloads.mesosphere.com/dcos-commons/artifacts/0.55.2/bootstrap.zip",
+            "CONSUL_URI": "https://releases.hashicorp.com/consul/1.7.3/consul_1.7.3_linux_amd64.zip",
+            "DEPLOY_STRATEGY": "parallel",
+            "EXECUTOR_URI": "https://downloads.mesosphere.com/dcos-commons/artifacts/0.55.2/executor.zip",
+            "FRAMEWORK_LOG_LEVEL": "INFO",
+            "FRAMEWORK_NAME": "infra/consul",
+            "FRAMEWORK_PRINCIPAL": "",
+            "FRAMEWORK_USER": "root",
+            "JAVA_URI": "https://downloads.mesosphere.com/java/server-jre-8u162-linux-x64.tar.gz",
+            "LIBMESOS_URI": "https://downloads.mesosphere.com/libmesos-bundle/libmesos-bundle-1.11.0.tar.gz",
+            "MESOS_API_VERSION": "V1",
+            "NODE_COUNT": "3",
+            "NODE_CPUS": "2",
+            "NODE_DISK": "1000",
+            "NODE_DISK_TYPE": "ROOT",
+            "NODE_MEM": "1024",
+            "NODE_PLACEMENT": "[[\"hostname\", \"UNIQUE\"]]",
+            "PACKAGE_BUILD_TIME_EPOCH_MS": "1596816137232",
+            "PACKAGE_BUILD_TIME_STR": "2020-08-07T16:02:17.232429",
+            "PACKAGE_NAME": "",
+            "PACKAGE_VERSION": "",
+            "PAUSE_OVERRIDE_CMD": "echo This task is PAUSED, sleeping ... \u0026\u0026 /mnt/mesos/sandbox/bootstrap --resolve=false \u0026\u0026 while true; do sleep 3600; done",
+            "TASKCFG_ALL_PORT_DNS": "8600",
+            "TASKCFG_ALL_PORT_DNS_ENABLED": "false",
+            "TASKCFG_ALL_PORT_GRPC": "8502",
+            "TASKCFG_ALL_PORT_GRPC_ENABLED": "false",
+            "TASKCFG_ALL_PORT_HTTP": "8500",
+            "TASKCFG_ALL_PORT_HTTPS": "8501",
+            "TASKCFG_ALL_PORT_HTTP_ENABLED": "true",
+            "TASKCFG_ALL_PORT_SERF_LAN": "8301",
+            "TASKCFG_ALL_PORT_SERF_WAN": "8302",
+            "TASKCFG_ALL_PORT_SERF_WAN_ENABLED": "false",
+            "TASKCFG_ALL_PORT_SERVER": "8300",
+            "TASKCFG_ALL_SECURITY_GOSSIP_ENCRYPTION_KEY": "",
+            "TASKCFG_ALL_SECURITY_TRANSPORT_ENCRYPTION_ENABLED": "false",
+            "UPDATE_STRATEGY": "serial"
+        }
+    },
+    {
+        "id": "/data/arangodb3",
+        "constraints": [
+            [
+                "hostname",
+                "CLUSTER",
+                "10.240.1.3"
+            ]
+        ],
+        "container": {
+            "type": "MESOS",
+            "docker": {
+                "forcePullImage": false,
+                "image": "arangodb:3.7",
+                "parameters": [],
+                "privileged": false
+            },
+            "volumes": [
+                {
+                    "containerPath": "var",
+                    "mode": "RW",
+                    "persistent": {
+                        "type": "root",
+                        "size": 1000,
+                        "constraints": []
+                    }
+                },
+                {
+                    "containerPath": "/var/lib/arangodb3",
+                    "hostPath": "var",
+                    "mode": "RW"
+                }
+            ],
+            "portMappings": [
+                {
+                    "containerPort": 8529,
+                    "hostPort": 0,
+                    "labels": {
+                        "VIP_0": "/data/arangodb3:8529"
+                    },
+                    "name": "arangodb3",
+                    "servicePort": 10032,
+                    "protocol": "tcp"
+                }
+            ]
+        },
+        "cpus": 5,
+        "gpus": 0,
+        "disk": 0,
+        "networks": [
+            {
+                "mode": "container/bridge"
+            }
+        ],
+        "executor": "",
+        "instances": 1,
+        "mem": 2000,
+        "ports": null,
+        "requirePorts": false,
+        "backoffSeconds": 1,
+        "backoffFactor": 1.15,
+        "maxLaunchDelaySeconds": 300,
+        "dependencies": null,
+        "tasksRunning": 1,
+        "upgradeStrategy": {
+            "minimumHealthCapacity": 0.5,
+            "maximumOverCapacity": 0
+        },
+        "unreachableStrategy": "disabled",
+        "killSelection": "YOUNGEST_FIRST",
+        "version": "2020-09-18T19:29:01.619Z",
+        "versionInfo": {
+            "lastScalingAt": "2020-09-18T19:29:01.619Z",
+            "lastConfigChangeAt": "2020-09-18T19:26:36.029Z"
+        },
+        "labels": {},
+        "acceptedResourceRoles": [
+            "*"
+        ],
+        "residency": {
+            "taskLostBehavior": "WAIT_FOREVER",
+            "relaunchEscalationTimeoutSeconds": 3600
+        },
+        "role": "data",
+        "env": {
+            "ARANGO_ROOT_PASSWORD": {
+                "secret": "arangodb3_secret"
+            }
+        },
+        "secrets": {
+            "arangodb3_secret": {
+                "source": "data/arangodb3/arangodb3_secret"
+            }
+        }
+    },
+    {
+        "id": "/infra/edgelb/api",
+        "cmd": "cp -vR /dcosfilestmp/* /dcosfiles/ \u0026\u0026 /dcosfiles/run",
+        "constraints": [
+            [
+                "public_ip",
+                "UNLIKE",
+                "true"
+            ]
+        ],
+        "container": {
+            "type": "MESOS",
+            "docker": {
+                "forcePullImage": false,
+                "image": "mesosphere/dapis:v1.6.1",
+                "parameters": [],
+                "privileged": false
+            },
+            "volumes": [
+                {
+                    "containerPath": "/dcosfiles",
+                    "hostPath": "dcosfiles",
+                    "mode": "RW"
+                }
+            ],
+            "portMappings": [
+                {
+                    "hostPort": 0,
+                    "labels": {
+                        "VIP_0": "/api.infra/edgelb:80"
+                    },
+                    "name": "api",
+                    "servicePort": 10000,
+                    "protocol": "tcp"
+                },
+                {
+                    "hostPort": 0,
+                    "labels": {
+                        "VIP_0": "/rpc.infra/edgelb:8081"
+                    },
+                    "name": "rpc",
+                    "servicePort": 10001,
+                    "protocol": "tcp"
+                },
+                {
+                    "hostPort": 0,
+                    "labels": {
+                        "DCOS_METRICS_ENDPOINT": "/metrics",
+                        "DCOS_METRICS_FORMAT": "prometheus"
+                    },
+                    "name": "prometheusapiserver",
+                    "servicePort": 10002,
+                    "protocol": "tcp"
+                },
+                {
+                    "hostPort": 0,
+                    "labels": {
+                        "DCOS_METRICS_ENDPOINT": "/metrics",
+                        "DCOS_METRICS_FORMAT": "prometheus"
+                    },
+                    "name": "prometheusmesoslistener",
+                    "servicePort": 10003,
+                    "protocol": "tcp"
+                },
+                {
+                    "hostPort": 0,
+                    "labels": {
+                        "DCOS_METRICS_ENDPOINT": "/metrics",
+                        "DCOS_METRICS_FORMAT": "prometheus"
+                    },
+                    "name": "prometheusdcostemplate",
+                    "servicePort": 10004,
+                    "protocol": "tcp"
+                },
+                {
+                    "hostPort": 0,
+                    "labels": {
+                        "DCOS_METRICS_ENDPOINT": "/metrics",
+                        "DCOS_METRICS_FORMAT": "prometheus"
+                    },
+                    "name": "prometheuscloudcontroller",
+                    "servicePort": 10005,
+                    "protocol": "tcp"
+                }
+            ]
+        },
+        "cpus": 1,
+        "gpus": 0,
+        "disk": 0,
+        "networks": [
+            {
+                "mode": "container/bridge"
+            }
+        ],
+        "executor": "",
+        "healthChecks": [
+            {
+                "portIndex": 0,
+                "path": "/v1/ping",
+                "maxConsecutiveFailures": 0,
+                "protocol": "MESOS_HTTP",
+                "gracePeriodSeconds": 900,
+                "intervalSeconds": 60,
+                "timeoutSeconds": 30
+            }
+        ],
+        "instances": 1,
+        "mem": 1024,
+        "ports": null,
+        "requirePorts": false,
+        "backoffSeconds": 1,
+        "backoffFactor": 1.15,
+        "maxLaunchDelaySeconds": 300,
+        "dependencies": null,
+        "tasksRunning": 1,
+        "tasksHealthy": 1,
+        "upgradeStrategy": {
+            "minimumHealthCapacity": 0,
+            "maximumOverCapacity": 0
+        },
+        "unreachableStrategy": {
+            "inactiveAfterSeconds": 0,
+            "expungeAfterSeconds": 0
+        },
+        "killSelection": "YOUNGEST_FIRST",
+        "version": "2020-07-22T19:20:41.369Z",
+        "versionInfo": {
+            "lastScalingAt": "2020-07-22T19:20:41.369Z",
+            "lastConfigChangeAt": "2020-07-22T19:20:41.369Z"
+        },
+        "labels": {
+            "DCOS_PACKAGE_DEFINITION": "eyJtZXRhZGF0YSI6eyJDb250ZW50LVR5cGUiOiJhcHBsaWNhdGlvbi92bmQuZGNvcy51bml2ZXJzZS5wYWNrYWdlK2pzb247Y2hhcnNldD11dGYtODt2ZXJzaW9uPXYzIiwiQ29udGVudC1FbmNvZGluZyI6Imd6aXAifSwiZGF0YSI6Ikg0c0lBQUFBQUFBQUFPMDdhM1BxUnBaL1JVdk5oOG1XYlNRd3R1WGF6S3pCQ01NMXNoRklQSEt6U1V0cVFLYjFpQjVneU43L3ZxZTdKU3lCakgwM002blpxdjF3WTlSOStyeWZMZVgzU29Dc0ZWbzQzc0xBWWVUNFh1VzJVcjhRSzJjVkQ3a1lIckM5d01TRTUvVitmeTFkWEYxSXNCUmlnbEdFOXljbFVUeXJ1TWp4WXZpSFF3Q05raUR3dy9nL1hSejVVYkRFSWI1d2ZEaHA0OGdLblNEbUNOdEE0N0VwK0o1dzM2bytEV0UvUm91b2N2dFRSdjNuczBvRXRLd1kyNVhiT0V3d1BGdHU1ZFpMQ0RtcmJMQVpPVEhPSHVjaGNMN3h3MVhsZG81SUJMQkJpTHRlRkNOQ1ZEL0dVUVlZK0ZGY1hLOHcrZ0tuS2ppUllHTFFqT0J3SUd6LzIxZnZxMWZoSjNYUE9YRjJpZWhoN0FtSnR6OTlBU2VKWTJFdmV1UEJkYng3eTQrMEEwMVdwQXVKR3NGRklZcVhkT1gzeXJwMkZ3VDlCSkJaU3p6Q2JrQlF6Q3kwOFJmZGgvaTZXMWVKNWMyQ2FVMVBURmVKWnhOSmJqbDNpNjVMVnQwWGdQSGlhNnRtYkcyWHZNeUdqV1E2bHNoOElxNm5rMmJRZFRaZnVxM21OZDdLdTlta1YwTmpsVHk2amFVNU51VDVnT09mZUIvZ2Q3VVhzOTZQWjJQTm00MWZuY2Vhc2tIRGJrUmhjRDFhbDlBR21uZk90TjZVckczM2l0TEl3YnhZRDhZT1lDSk9ReUxtOEFnR2FFbnlmTGhoZU5DNHNiTTdTakt0R1R2S1R6OWRuOWJreEtwcjIrbVlKUFpEMzNseW11WjQyOXZZNDE0RWNzN1I1TTU1QkRoRGIvU0hlcXlBTGtCWDJ0WWU2ODdFeU9pcjhhd0Y5RnU5RjZ0MUY5dWt1M2lzVVhsVkY0MWZDZUNQcmRiTmI5Mld2QUo2dTVsTG90bWt2KzYycHU3aG11VVpDZGMzOERicGVVeDJKYllmNzBDSHJSNHh2U25sOFpyUlpUWlIzMndDTnBqV2U4UnU1MnpUQXJpVmRqK1MxTGt1R3ZmNnl0QW5ZcU01MG5YQWMrZmdldnorK2RRK2xCZXRyVDdya2p6UVYrUnBJSkxCUU4rVW5HOXVRYzh2YU5KY21nK1NuTXBCK1c0UFJIazBrVlJGSjdQZVFEVG1BMTBGbm93blE1RXBUMjFOYitoRFhlbFQyK0R0blFOMmZMRmNRK1MrbWZtV2NROXJxOW00SWFLeEVuV2Rwc3oxY3VSRHU5bFkzYzRtMmxQT2w0NzhOS014eXZ2cm9VNlozNnFqN0hrd1Z1SFpTT3cyNEI5cnV6M3U3NVR4SU42WUQralpzNjY4d0xOa2VocVQxNnJuZEFreVBPWmllZFpSMTVhMDEwOXpXbFBYTnVobkFIYWNQYWg3SC9pc2Z0N05FOVFIZE8xQk0rVCtnTWdqemVpTmg3cXF2T3RMN3FFUG5jZ2ZqTDhZdjVNRHFHNFZyVzBEcmRkV1hyK2psYUpxUXhaM1pOYXhpZG5wT3UvNFF5bStVYnMzSDdYbEI4Q3JHQ3VqekM2UldiUDdzOG1NbFBxenFMUTF5QWpIc2pPZmFjNDZHdWhZcFQ2eTUyc2ZpMHJ2MmVBNTR4b2YyYk81TmV2YUdud2dLcDZWRlAwa1hZbFk0RWVEc2JZQ3Y5a1YvS2JWVXpVamkyRlpMNUVWYlAwcDJvYlJYajZObldQZXdaNDdLcmM5MGZ3UkNRcjVZNlFiT3VTT2UwN2Y2QXlOUlNuLzlrTXZtTmJWQWZEdm9zbXlnR05nTkh0d0hnMjN4N1N4RzNlQnRuZ2djMU52RTRqSjRIRWlhVDNnNGRrd0JpVjVLd2lORG9GNklVdjJ3M3ZubTAyalhjSXpuTlU3aW9oS3o2bjN3N2FSK1dpQlgxcFh1ZTZOcmY3UVc5c2QrY1dzdlJibEZlVW5vNjMwUml0akNENzZySWsyK0w3Y0g0bjJjQ1Jwd0EvRWdLNU1nWTZ1dFdVRDhzeG9hQVFLcysyTHZobnAzWno5MU9jUjBacER2WkhoZ0ZqbS9rLzlZV0JvRUY5U2N3dzRJRk1CVEEvcUJVR2M5NjdVYjB1dG5IejNJN0doRDNUeWxPSFF4SlJIQ2Z5NnJlaVFKeWdlMExjMkgwbE55SHZ5azg3dFJ2MXJhWGYwaGRyNlBsbDFTV3NEUGRpWEIwYWJnRHg5WmcvTGxjWHBSQ1BkKzBGT1htVXdORml1b0hpR2VsdWRHeXN5QURzKzY2VE1CM3FicVRRTExLVUpOVmc3OER1Yit2MDk1SndSK04ralpwRDVVQy9CNFNwMVM2UzVHMkpQakFuV1Nic1lROG9Fem84MFhSMXFvQmRhSHlBbUFYZXNqRXQ5eEtZMWdkVW9XbmRvTGhuV2pFWUp6cUdtMjcyUmVGbk9rd1Q1c1ViV3BsZndVV1d3QTl0QlhBNTBxbDhGN0sxMk5WMVNTbklEbWU1Nkt0U0w1UXg4Zldxb0w2aGpzTnB3Q3Qrd0RUNVFsdVBHL2Uxb2JJalRNZlVEaGNWdFVTYmp2azlreUZkYVV3TmZHaGp5QVB5eit6RmZUY0JYekJtYTN0K0NYeXZBVHh0d05DZmlESDZySCtQU1o4VHVxUDVCN2xhMGxXS01GRzJ1dCtYbmtTTHJvSy9CaVBwN2lmMW1IY09kVG96SUJwK0MyTmFoSDkyWWdQdEFiMjN3MCtaZzlhcEFqdXFETFp0R3Vhd3JORkdYVS9lVkdPM1gwUUNhVDVaekZyVC8zdmVoWUdOdENUMFlzV2grZm9neUdpS2VOQW5EbWVieEhQMGE4Q2JSM0UzM3g1dFUxbGJXWTZiLzhyZ0oxVFBQaFlVK2Q3dlhlM3BtdVliZWR3Q3g2Yi9OQU8vQlN1dFpoL2NST25DLzMzdElhN1lpN20wNmcxeUpRQytzVjl6elMzdDhhVG1yN1hzUldudlg5cVJIZGJlMHdDN1EzeWUwM3dlZkMwekl1MUNub2M3RlFLMFJtR1BGSzlxRjhqUmJXNjVLOUFjak10c2tubzV0cHNOaWZPVmd3QjU3WHdGK3JJNnlwWDJIM1RHMldSK2Y5a0p2Y0I3TE55clVndzNvTnUzM296MFBPZm1vcmFCR05FUTZxd0Q5Z1ZudnNmNjQzOHJ4VE9udTZ3bnYwY0dQTndXNUFJYjFkdHhubDFabjVlVDQvcWdQVEhYekNyNW9SSHcyaXhaZDZNbDA1V2JEN096SUZHZFMyZytPL010K3E3dll6eVlsUFcwWnZkUDlZU3BUUjNGZ3R0eGxNd1RMOTd1NzFFL3B2Tm5JK3NTcnAvczdaKzliclkvNzA0TE5Uc2NHMkpQVmhrMUJwNjNlaHRZcEUvcHprK2RFY1ZxL2N3NWdtRnc4OXFFZUhjUUk5TFF2ZjBnSGRZcXpVZXpaVWwwL0ZYUE4xdXFvWTVqam1JL1JIUGg5dWpxZXRmNFhQZ1E4OUpQc3Z1QWZ5OStmYlV2b3FXczBEeXlKRFRuYzZoREcyMnpTUFR3VFRjY3c0L043aUNKZmJ6TTRyWXREbUwyZ2I1Zzk2eXVwbWRaWXloUG9XUE5uRThqbHhYalB6U3hRQzVWZWJ3QXpDTXlqYmFoanZWSGFEejNXc3Y2NzcrUnAvNHZvamM4bnRkY0FhZ3FoK2Zzb3ArVjl2NUEzMythdTNCelNHVWs5ZFpET0F6Um5nbytJME5kSVI3V3BWUGZHazZZMG42R2YxbE4vcGJyZmdyL3RXRTNleDhHYlg2WjNVWDlXWGkvNEE1c3JxZDRtellqMXl2K3Z1MC9yYmxwN1hkdGpqZEdCOWNqcy9CLzB2VFNHSjROOHYxakl2L3Q3Z29IUmcvNTlDZk1WekpONjQyRUVzeGY4aFhsT2VXTDNXa1p6d09PVDM0UG03bHhPMUtmais3SGMvVTFwVGNyZkVmL0IrNk5UdEwvMzd1Z0lGK1RRSWN6ZU1MdHF5cGpsdGU3bTFOM25pVGtyVnh0NmczMnVQT2p6RC9SY2RwZTN2ejg5c08xZWYreCtzR05BTDB5V0xCYy92UFdjWFMvcm00OXRjM2hubXZuYmZGRGc3Nk83Umdmd0J3ZDMyNUxWc2FGZjFvaE83K01oUjgzcUs2ajdlOTVqcUMyQk9USGlZY2RZbWcrYVB3RC9tSTdWd0g1WUZXdU5LeTF4aDhUMldIcW05eXVIY0pUSC9YdUJQYTRsZ1ZtZ01BUGxaNHZEL0FHeFBLSXhQVlEwWFcvbFl4WjZyR3plY2VSYWZ5aXp2cjQ0VjFBNVlXYUFQSUxHOG9yTytKQmJWa3dmOTZ0TklYZTVKS0h6ZyswcVVSRnV1aW5PR3ZMV2JoTTZjMTRlNVQ5UGcvbkdBSnRxSTdERjJuUTEvZzVrZDVmbk81NU9sdmVBbjlwTEFyK296ZlFaMVBOWGlkNGxNdmk3bksyemVjeHRRTTlnd3d6MHZ1NU1rREgxcFZ5dTdxNm5YaStnc1Zmd0lVWDhBbjkvckh5amJ4QWpQd2t0VE45dm9TakNjVVIvSmFHemYwRm0rZnUzaWI5WGJOOWE4VitPaXhiMDVkZmJpOFdxalFJbnVrMWZUbjc3QnRnWkVNUG9BSnJ6eUVXRXdKbGxIQWZSYmJXNmNPSmxZbDVZdmx1MUxUOWkvemxQbktwSmZMUHFvaWpHWVRVZ3ljTHhvbXFFdzdWallmZ1JXbFhIWFZRNVJyNTZidU01U2tqTUtWd0UzdUx2SWRyOFNGOVVWczQ0YlJmYlR1TCtVNGx6RXFYVUNRcVp0djU1eEJtRlE5cVJGV0xzUlVzL1RzMEpOckdJUXcxaU9oNEtIVzZjamVQWi9vYjlmTDI1T3IrNnBMOVdzRWhmYnI1aUs0bVJTU2krSk15YkQ4NTR4RWQyZEpGN3UweEY0cTlncTl5ZnF0d2h1SWg4NXdLUVZyaG5ZUzkrUU5HeWN2c1QrQjlaK1BTVjlSTFZHbGYwaFRjaUNWVmFyU1pmbWxlaWZJWE15N3AxZVFtLzVsYk5GdXVYbHplU2lXNXE4L3I4MnJwQjlXdUVVUU5aOXJYVndKZm9XcnE1c1V4YnRpcmZmcWJPU0J3dmVmM1RaRHpuNUQ0dnBXVmZpbGJEeENhcVkzRnVOU1JyZmptM1RZenFselZVbDVGOFkxK0w5aHpaRFZHdUkwdVVwTHJVdUs1ZDJnQld1N3BxcEZMYUtBUnovbmxpcHZRK0wyZERybUZyTG9vM2tsMnZYZGNsR2V4b21pREpsUVdQK0tZR2N0WHJOM1BZdWI2K3FUVWExeVlZMTdSTVBKZm40cVhNNUdUWkJTak9uUVVWTU40R0ZMVnZ2bUFycHA4SGhINkF3emgxN3pSVXlnQ0xuMEh3RHdoU2NJR2pUMEpFZDRVY3lrUDgvRU1OUU83RWhHSWZwZ2pZK2lFTjNYTitTL2llTVBkRElWNWlnWDUrY2Y3WTNGTm1IeXg0RmoyY01oekZvZU10R0RJVzdyQkVzN2NWSkZGT0xDOXhUY2pPT1NqcFFnUXdGN3M1S0Fmc3REZ0FFMnVYQUVmek43Q0F3K2ZRajMzTEp5emxGOWdmQWJ0N01DR3lsaGprK0N0MUl3R0VZZTcwdzBtMktRaGxmYmQ2OENOZWJZNHBFQ2VLQlg4dXpIei9DOFlCcGNRSVJreGxVZXhUdFBBWHhVQTh4UzM4S1BERXlWMzR0aWJkU0tkWjJhM09wWXZkaWtHZXdVTXQvMURQUDF6bUh4clpBeGRqNUxqWVQrSnlRZklDUlBUTEVpRk93VTh4ZGlWR0hQY3ppcGNmSVE0b3pDRTJPQTJhc3ZCelFrcU1xTkF0SVlBOTVuNXY5dVRsWFdCbFc5Z3NNYkRMQzBtSzNmUjlncEdYWjVaOTRVUHpEdVNFTzl1R2ZpTEt4d0lQS1pSdWxBZGN1c3RzQ3puSFRUekg0a0czZ1RJSjI2N2poYUF6NXJQdmF3MDRzelByVjFLTzhvNWNaQ25JZHNwNXlyWXZoT0hTVDRndG1KaDVOMk1TNGhNeWFZZ0YxN2Z4eFlmdXpyaHhNV3hhd0JDZU82OTVkcWcxMDAyZ3luWVBXYUlnVkRFc0RWRUlBYkpxaUlHcHJZQlNJMllvRmhoYU5ZZ0x0cGttbGhJT3dXdEFueFQ1Zi8yRXpuZDM1elB4WFA3NTdlY3ZQLy83WHdxQ1VHMXlPYUpTUS9mcCtydUdMdXd5SGRJRWlpQ1FxZmNKTVlwV1FoTFlLR2JwOVhNMnZtMklEWEhQVXBtbE9kVjNMVjNjL29kWkdrNkVPRllQaWtJTDdBWGwwVUZFNEFDOEJQelZaOXdnOHNNUmV4UURUWUxVdWtOK1pBZ0tBMWZZbzRxRTJCZVNpRmVTWXZWQ0Nad0RJQjVKRjhKbzZVVGdOcG1FQk05akFidEJ2QlVTajFDamxCK2szK0I1R09qWnA2V25nZ2V3YWprQkl1L0l2ZC8vck5SdkIvNlZ4T1FSQU1mVldVa0FzSFhhTzhTaFR4akRBU1JOVmludGhFQUpPMDQ0RU5FZWptaStCWlo0UjNCd0pwTW9EcmRVRlpRSWxNQWQ1Z21TVXdaS25oL3Z2ZGozeUpacUFQbzJldVJYbHFkLzVVazkvZHdUWkE0VHo2T2xOUHZ5VTdCSVFtc29PTDdBUE44QnpWSGZGMzYxbllpMmp2YXZKOHNCclJlMDEvWVhqM2lOQzU3dzZDOEV2bGlXMytBRVdBdDJCUXQ1bEhIZm8zNXdLOWpZVEJabndORGNQeE0yS1BUT0JCeUdmbmphVUJTY3piZUJaVGpCc3gvR2haemJlaGJvWjdIVXFWaWlwRG8zdXMrWjQyblByYlRqS09XVlFyTGpSK0FDZmczOEZPZGJXUVg5djlXMTFHZ3Q0aWUyME9KK0FqYk9pVlBTb04xQXUwd2J0RTEwWjhFb0dIM0IyNjZkbCtodURIV1ViUWtydkJXNjk2ZGk3Qmc0alM5ZWJ6MkJBc0NjQ1BIeFlUUUFTenc1N1JrN1pDdk5YVG1DSDdBV0hSMzRRK3hwZU9Id0QzanpYSVZzOVNOV1VxaU1QZzBlNEExU0JzVE05ekdDclZvZnh3aEtIQnF5cnZtUW9XeFhHS1pOOVduT2pzQlp6ZnJ2dEFYL3VGUWQ4RVNiOFhjNW9wdWY1cWZ0MllFUExpeWtUY0pwVnFRcithTFd1THhJL3g1d2xmVy9wVnpSelU5elJZRlBjMUtsWDNOSGNSVWFLWFJPejFRUG1GRndiTDNQRGRzOXhVN2JvK2xUS0J5YTAwUEF5TVZuY21yNi9Bd0FieCtmNTlyYWRBeWkrOEllNEIwdXNxSHBCMW8yMHN6T1VsazJUTEVDRkw5aCtaZzc2QS9Ud1JjeWdaOTRNYTM4QjdQQUU4MEd2UDZtUUFLRE9xVzNWcTdiWWROZnJvQkRLVmdJdjMrbDVjYnhmc0dwNTMydDNBcGY5MWNiK1pheGlpejRGempWdFZTbDU2dnM0TmZLR2NCRHM3RUdXWCtCZk1NUi9FZTZjZzRyNSt6MjRtOGNNbkhzRkNLN2hFTmNtSFBhMGwxOHJYejdNQnVrS2g4OURta2pVVkJTYWd6WVlpSitsd1d6UTB4UnhIUVg0VW5UOGRtTjNRTC9samdoL1g4N2ZxcWt0eGJaZlA1emV0WGl1b2hlSXZFN1lRS0R0czdhZFZpU0dqSzl4Wkd2NjJlVkpZcStlUDdHNjBaUmt2MC9GdC8rQjA1NUFMemtNZ0FBIn0=",
+            "DCOS_PACKAGE_NAME": "edgelb",
+            "DCOS_PACKAGE_OPTIONS": "eyJzZXJ2aWNlIjp7ImFwaXNlcnZlclByb3RvY29sIjoiaHR0cCIsImF3c0FjY2Vzc0tleUlkIjoiIiwiYXdzUmVnaW9uIjoiIiwiYXdzU2VjcmV0QWNjZXNzS2V5IjoiIiwiY3B1cyI6MSwiZGNvc0FkZHJlc3MiOiJsZWFkZXIubWVzb3MiLCJkY29zUHJvdG9jb2wiOiJodHRwcyIsImRlZmF1bHRQb29sVGVtcGxhdGUiOmZhbHNlLCJlYzJNZXRhZGF0YUZldGNoIjpmYWxzZSwiZm9yY2VQdWxsIjpmYWxzZSwibG9nTGV2ZWwiOiJpbmZvIiwibWVtIjoxMDI0LCJtZXNvc0FkZHJlc3MiOiJsZWFkZXIubWVzb3M6NTA1MCIsIm1lc29zQXV0aE5aIjp0cnVlLCJtZXNvc1Byb3RvY29sIjoiaHR0cHMiLCJtZXRyaWNzUHJlZml4IjoiZGNvcyIsIm5hbWUiOiJpbmZyYS9lZGdlbGIiLCJwcmluY2lwYWwiOiJlZGdlbGItcHJpbmNpcGFsIiwicnBjVmlwUG9ydCI6ODA4MSwic2VjcmV0TmFtZSI6ImluZnJhL2VkZ2VsYi9lZGdlbGItc2VjcmV0IiwiemtIb3N0cyI6InprLTEuems6MjE4MSx6ay0yLnprOjIxODEsemstMy56azoyMTgxLHprLTQuems6MjE4MSx6ay01LnprOjIxODEiLCJ6a1BhdGgiOiIvZWRnZWxiIiwiemtUaW1lb3V0IjoiNjBzIn19",
+            "DCOS_PACKAGE_SOURCE": "https://universe.mesosphere.com/repo",
+            "DCOS_PACKAGE_VERSION": "v1.6.1",
+            "DCOS_SERVICE_NAME": "infra/edgelb/api",
+            "DCOS_SERVICE_PORT_INDEX": "0",
+            "DCOS_SERVICE_SCHEME": "http",
+            "MARATHON_SINGLE_INSTANCE_APP": "true"
+        },
+        "role": "infra",
+        "env": {
+            "APISERVER_RPC_VIP_PORT": "8081",
+            "APIS_SCHEME": "http",
+            "APIS_ZK": "zk-1.zk:2181,zk-2.zk:2181,zk-3.zk:2181,zk-4.zk:2181,zk-5.zk:2181",
+            "APIS_ZK_PATH": "/edgelb",
+            "APIS_ZK_TIMEOUT": "60s",
+            "AWS_ACCESS_KEY_ID": "",
+            "AWS_REGION": "",
+            "AWS_SECRET_ACCESS_KEY": "",
+            "CONTAINER_LOGGER_LOGROTATE_MAX_STDERR_SIZE": "50MB",
+            "CONTAINER_LOGGER_LOGROTATE_MAX_STDOUT_SIZE": "50MB",
+            "CONTAINER_LOGGER_LOGROTATE_STDERR_OPTIONS": "rotate 4",
+            "CONTAINER_LOGGER_LOGROTATE_STDOUT_OPTIONS": "rotate 4",
+            "DCOS_ADDR": "leader.mesos",
+            "DCOS_PRINCIPAL": "edgelb-principal",
+            "DCOS_PROT": "https",
+            "DCOS_SECRET_NAME": "infra/edgelb/edgelb-secret",
+            "DCOS_SERVICE_ACCOUNT_CREDENTIAL": {
+                "secret": "serviceCredential"
+            },
+            "DEFAULT_POOL_TEMPLATE": "false",
+            "DISABLE_TLS_AUTH": "false",
+            "EC2_METADATA_FETCH": "false",
+            "EC2_METADATA_HOST": "169.254.169.254",
+            "EC2_METADATA_PATH": "/latest/meta-data/",
+            "EC2_METADATA_SCHEME": "http",
+            "EDGELB_LOG_LEVEL": "info",
+            "EDGE_LB_SERVICE_NAME": "infra/edgelb",
+            "MESOS_ADDR": "leader.mesos:5050",
+            "MESOS_AUTHNZ": "true",
+            "MESOS_PROT": "https",
+            "METRICS_PREFIX": "dcos"
+        },
+        "secrets": {
+            "serviceCredential": {
+                "source": "infra/edgelb/edgelb-secret"
+            }
+        }
+    },
+    {
+        "id": "/infra/edgelb/pools/main",
+        "cmd": "export LD_LIBRARY_PATH=$MESOS_SANDBOX/libmesos-bundle/lib:$LD_LIBRARY_PATH; export MESOS_NATIVE_JAVA_LIBRARY=$(ls $MESOS_SANDBOX/libmesos-bundle/lib/libmesos-*.so); export JAVA_HOME=$(ls -d $MESOS_SANDBOX/jdk*/); export JAVA_HOME=${JAVA_HOME%/}; export PATH=$(ls -d $JAVA_HOME/bin):$PATH \u0026\u0026 export JAVA_OPTS=\"-Xms256M -Xmx512M -XX:-HeapDumpOnOutOfMemoryError\" \u0026\u0026 ./bootstrap -resolve=false -template=false \u0026\u0026 ./edgelb-pool-scheduler/bin/edgelb-pool ./edgelb-pool-scheduler/svc.yml",
+        "constraints": [
+            [
+                "public_ip",
+                "UNLIKE",
+                "true"
+            ]
+        ],
+        "container": {
+            "type": "MESOS",
+            "volumes": []
+        },
+        "cpus": 1,
+        "gpus": 0,
+        "disk": 0,
+        "networks": [
+            {
+                "mode": "host"
+            }
+        ],
+        "executor": "",
+        "healthChecks": [
+            {
+                "portIndex": 0,
+                "path": "/v1/health",
+                "maxConsecutiveFailures": 0,
+                "protocol": "MESOS_HTTP",
+                "gracePeriodSeconds": 900,
+                "intervalSeconds": 30,
+                "timeoutSeconds": 30
+            }
+        ],
+        "instances": 1,
+        "mem": 2048,
+        "ports": null,
+        "portDefinitions": [
+            {
+                "port": 10006,
+                "protocol": "tcp",
+                "name": "api",
+                "labels": {
+                    "VIP_0": "/api.infra/edgelb/pools/main:80"
+                }
+            }
+        ],
+        "requirePorts": false,
+        "backoffSeconds": 1,
+        "backoffFactor": 1.15,
+        "maxLaunchDelaySeconds": 300,
+        "dependencies": null,
+        "tasksRunning": 1,
+        "tasksHealthy": 1,
+        "upgradeStrategy": {
+            "minimumHealthCapacity": 0,
+            "maximumOverCapacity": 0
+        },
+        "unreachableStrategy": {
+            "inactiveAfterSeconds": 0,
+            "expungeAfterSeconds": 0
+        },
+        "killSelection": "YOUNGEST_FIRST",
+        "version": "2020-08-14T18:35:21.152Z",
+        "versionInfo": {
+            "lastScalingAt": "2020-08-14T18:35:21.152Z",
+            "lastConfigChangeAt": "2020-08-14T18:35:21.152Z"
+        },
+        "labels": {
+            "DCOS_COMMONS_API_VERSION": "v1",
+            "DCOS_COMMONS_UNINSTALL": "true",
+            "DCOS_PACKAGE_DEFINITION": "eyJtZXRhZGF0YSI6eyJDb250ZW50LVR5cGUiOiJhcHBsaWNhdGlvbi92bmQuZGNvcy51bml2ZXJzZS5wYWNrYWdlK2pzb247Y2hhcnNldD11dGYtODt2ZXJzaW9uPXYzIiwiQ29udGVudC1FbmNvZGluZyI6Imd6aXAifSwiZGF0YSI6Ikg0c0lBQUFBQUFBQUFNVmJhMVBxMnBiOUsybS9uSE9xdHBxQXFObFZYZDJDUk1tV0tIbnh1SFdyS3k4Z3N2TG9KRHhQbi8vZVk2NEVCRVMzdTIvZnVoOHNROVphOHozSG5ET0VQODlTeDVzNWt6Q2UyRUdXaDBsODl2MnNmaUdlZlR1TG5TakFoOENmQk13OVQ1T0U0ZVppdDJraFhWeGZTTGlWQlN4dzhtQjNYQkxGYjJlUkU4WUYvb0lNVy9ONW1pWlo4WjlSa0NkNU9nMnk0Q0pNY05JUGNpOEwwNklrMkFhanA2YndBa1pDRWd2M3JjdG5BNXNLWjVLZmZmL2JnUngvLzNhV2c2dFhCUDdaOXlLYkIvanNSV2ZmNHpsajM4NldnWnVIUmJEOU9NNmd5RExKWnR1dGFSWjA0cnh3R05PU0lzaTMrOUlrTHc3dm4zRVpoSDNCd2x4d0F4aExDTXVkZ2Y5dlorVlJLdzUvZG5qcTBPa2dGdWJ4N3ZnRmpyUFFDK0w4VFpJb2pPKzlKTmVQREhzbVhVamttTWpKbkdKS2QvNDhXOVR1MHJRN0J6RnZHcGhCbERLbjRGNWJKcUhUNzRYUDRWMFkxSXZOYUtEV25MN0ducUxHMU8zYjh0am81SzFRZmZVZTdVM25OWmwwamF2bDAxMFNZcTNnbjEvdnhPZlc4a2NuWW5PdnJrL2RTR1BldW5QZHVXL3pjMjZ0c2ZFZjFhblRiNGo4dmxLNG5iZ3BEYU5WT3BUazFHdDE4azVMdGMzWlNqVkVLM3hxM1lYWUw0ME0xUjhZUkZjclJpMmNhNmtzZUd3dXZMZzNNZHY2Mkd5emxqVlRESWpZNjlsNjU4WFFOZDNXWGl4Sk5udFdvOTJieWNPbkduaEVFdk5xOHVhcHIwcHVwT2NqUTg2ZGZ1ZGFiYS9hQTNHbDlwamF0QmdiVzIzRk11N3p5V2d3WGJwMVZleTBKY1VTWlhNZ05wcDJtL1YxVy83UnMwZk50ek16V1cxTmMyOTlOek10MnpRbGJXeUp5clBlVmwvNkxlS2hGcU9CdHZEV1V1ajNHelAzd1ZxNER5dzhrTWxJNWw3dE5uMWVOM2U2R1RPbDM3UGxqaWxLeW92UlM5ekg3dVNwMzV1b1cza2tyV25POUpZcFRSWk9wR2Mvd3MvTzZ6ZjduMVZEbHZmM2xqcUxzeDhQcTAybkpjMDZMYjNTY2ZwaVd0WmlDSi8rTUpNWjM5ZTZpOVR3SFo4WFM5SE5GM3NaUHRuVHd0dDBKRzBtVHVnNnVMZFczZko2K0J4S25WRmZXZXFQZHVHMTVibFp0MFd6TnRKR2ZRbTBtT0xGNnNKank3RFRHa2FkMWhYNHlndi9VUk85U0ZsQ3JqWFowWDBjc1pmK2FPbythZ3ozUkp4ZHVnK0tPREtsYU5oZmJVWUd5WGMzZjZyWnMxSE56b2NoMW10eS9qVFFYcDBIZStiM1Y4d0xaY1Q2MVdMVTErTlJmeFUrRFpvTHQ3YWNQSVV5R3ozNHpIM29GTjZEdkhCYjBtWlltN0xSbzUyUEJwM0ZRVjdFMm5MVTF4NGMwQnNQeEpCeVlWaVQ1LzZEa3JxUnZhYWNvSnp5SDlseVpQQzRMZU55M2ZreDV2RzhtZzRqTytlNThKai82TXowZTRxZG5paHJwaVUvSTM2YlZwdU43Wmx0V0NKN01VTk9vOVl0ODdEZDR6R3B3VC9TaThtMHNXMDFWUHkzZWpBMzhlN0UrdHJ2VzF3dXZjM3pvZGV6dEtlZTVTc0RjV1QwTEVteFJka3dKUG1acnNzenhZMVhzOWQreEY1SFJtTSs3RXM3M1V4TE1TaS9UTEdCK0diUHVyZ0NIUVk1ZGNTaGhtdWxaMUYrdnVkcjZyYmFOeXphMDJnaW5uNkdNYVZ1a3FaWWJLVDJSQnM1S1J1MklxdUlkNlhQTWFDejdJVExuYzBzMFRic0didEhicG85Y2Fwc2VUaVB1Z2hjNGZZTzZ2bnJubTRiK0E3eHBEOVhPdjdvdE80bXNPLzIvcWJ5MzRUZmo0Rmw4U2dkMXV4N0wwSmNBY09jdnBJZjdWbjRBL1cxOHZWTlVOK2VzWkRiOWl2T2lXYWtBQXNrdVRNcHo0eDcxZjlTdnNXbjhrWDIzQStyV0NsbDNmUG5tMTJQWXByOFVNckhtczJlV0RSMTJQTjlURjNWbmw3YkovZjJtSzBTemdMN0VMK3lBbC9jRzRxc1dXdnVoNVZtempaZGdIYlh2Qk83bThtYSsrV2RmQ29ZQW1jbFhRVkdqaEV6Qm8rMzJXanRHTTBmZnY4SzlXTklOV1RkYmQydHRFMnkxRXo4dGU2eTd2M2RzdHVpdUNDYWQrRVdZM3QyVXgxSUk4U0lwcHJpMVltWUtyRzFOMmltTnZMUnE3R0ZHOFAyYi9JOW9HNUFKLy9GbWhWams2NVArTTdkK3V5RGM1YWlJaTQxRmRqWVBaRkRTdy9ZT2F5eEpiQ3BpdTlTRHgyMUE3b01URWw5R2tnMmNxVHpYb2ZZcHV1RGM3RC9pNm5JQnJDRThrUFJjVzBpRjdlOGd5M3VNZTcvdVJmSk9jbC9nc1pCM20vanh1SzRkNUQ3MjVoNEFSL0NKOHA1NEFkN3RwWHVWdWJqODRUSnI4Qm01c2I2L1VIdHI1K1VCWGxzUDl1dHl2NUhPZ0JYSmRBNWVjNVNiUE1ESFhpdmNrb0gyRjM3NEV3Qm1VL3hhUnUyOXZUQm1aa3owTEpUZkVyYzJ0bW9xaTFxajllam1PcW5mbEsrbm0xYnBraisxY2U2MVdqMlppdEYvOGcyQTF0MFJZcFhYVUdzaGk1cTNDbWFoaVVobjNmWXkydHBpVmVOcVlkNDl4Kzc4LzM2OVJUcGkyR3RRSzFzcEc1ZmlZOXlvR2VLY25jZ3FZcEpQWUU5VXBDTHNKTk5HTUg3c05KV1RjaWxwZWdIRVFlOTkvWVI3WHRyWmx1b0VZWnVyYmI5MWQ3NTRzYVBsRFd3bHZUYW9PYXlZVjJGck5vcEh5a21MQXljVVE3bGFvTHVaS3QzYlRoUTAyRmZSVTUwNThEeDJpaGkrWkZ1WmU4ajJZYXh3d09Wc0VUeUlzSVZaWVA4UmcvYndHZTJlWXJTOWNpUXhPR2dVNHpxNlo1Y3padGdyZTMzQzZYczdhcldWZGgvVkpmS1hsRlVKUDloK3R3SFh1M3dZbHRMTFEyNXIzK0lWKzlxelp0ZTcrb3E4TG5NTzhxam1kMUdyRm1HVmVKWXNMNEx0N1JLWDN4UUE4T212UFByYk5zclN5KzZZbmQxdTRwOWFSbFN6K3R4WDlxYkFXSzVYeSs4VGpSSzRWZXY4NXJpK2tTUGJpOTVyenhveWFWZHBQTHo2SUd1WmFxUjVBTXhRTDEwd2VOSkFaKytYUFo0K1B6TWlwdEJTK1ZZUmp3N1dFZU1GNE5heWNkN21ETG9NcTdvM1FPejRGdjJhckhtZlE5NWhYNFIrY0JlaHdPZFFaWndiS3dPNk9FYWM0MDBoajgzYmwxYll2OTZaTXN6OE5nTWFsUFJmMnlPVDlFaE9iMEhaVTEwZkp6Wmt6VWJEVmhsajdUdUt6TDEyV09jQlM3SmtxK1VaNUVUdWQrdjdQWnFGOEJWMkZTVm54N0pwZ1VMYktJSEhvOHFvLzRZNTJ1UWF6M3FqeWp2azBGTmg5MFUrRStlUTQ4Y1oydW9UOUtvT3RmZE5IYzBCd1BKSDlzSGNiU2RyNW8yOHJTTUdRMDVacGUxSkVLUGJsZitxamNUeEQ4RHYxZllaOXlyclFock1PK2hOeWhqbk9vRFlncjllOWt6SHNYUjFMS1ZKc2REbzQwNGJiTjdZSU5TeGYydjIvNGdOK1VUdlFMMnR4dk9yaDk4TEc2ZVBzbXR2VHcveEhicTFmWnkxMjRycGlGcUR6cHNaclpYWStBUStabXdvc3BmbW1mc2czcEwvZUJSbllHdFJnZTRjYlMrNjEzMytsbGdxV3BTcjlBREppTFB0L2lCT3NMbW93Zjdpbmp1K283eS9CRzJLdWdWN1IzdTZEUFcxUWZGRGVKamhobjVRQWZrSW1ZYTVONzZRQmFhbTZLOU9la2ovZDdMRC90M2p1b2RhcFBvMStTMVU5ZDJ0cUIrRlgyZ1lxS1c3TTgwNEl0YXBpT0hFTDlWUFRuUno1VTJzaHF3VDlVTHRwVVc2cEY1OHZ5RGdoNTd0Zm1KTG5Qb1VYZnJha2I5enE1M2JiUFd0bisxYlZYZDlZc1J4YkM5cGhnYkRxaG02S2gxOXRwQmpTSzhLMk84V3d4akd6NWJzYWVCUHZWQ0tRNE8rOWw3ekdZVzlXV1l0NkNEak9uSE5nYmk2a1dYMUJmRW9JWGFxdlhzS2ZYZmJlQytoVnFnOW1kbFQ5Qjl0YlZlK09aMzZ2TndCcjF0UlVQMFVUZmtyaW42aG9tWkQvbU9Qa29aZ29hbHQ5SGVNOWswN0xURWdOZU9aRnFkdlh6R25NcjBwZ0ViVnpRZXR6SmFNOW1pbkM3cHlEWmlsSjRsb0tkdlZIMmR1dkJwdmpmdXhGL1UxVVJGQXorc1MwMWdGUHBXUHJPb2E3ZXVULzBIYTZLMTN2VVF3RE9sYTdlbjk4Q2JlOFFSNUZOb3J1eUJEMlRxbmU3bG9pa0RmZ0pydEFReG5PbDFkWW82MlFPK3BHN3RaTjk2ekFlek84azZhcG9mOUhuQU1XQ0VudER6Q1BSbEtuQ1RjQW4zVHZSbG1JRjcxZ3FZcVlHUDlvUjYzT3kzUjdELzhrdnltMzNsYWhTaEQvd0s3WEttZTdIdHI5bkczdGF5TDhtdGFaaHZsRDVzaEZwRE1WSE9vUmJpNUd0MnVuZjd1aEk4MksvK1FJY3ZHcFpETTBuZEZnOTZaTlFiRzNOY2o1NGxLS29DakJ1ZW1PV0FHenI2RjIxalVWMk4yTlVoRGZpdnZYcnBBM2ZneS9JNVl1dDlmd2JNeFd3a041RFRjMTlwSWc2bkIvRkJ6MjlNbEZ6MFk0OFVzd05SR1FDZkNOdk1LbjVGTDdiWmZsK0gyWVRQQ1BCRmQxdVhUOGhQY3dySFo3dTlNbm10Ty9TQjB0dW9OQnNocnlpL0ZmVG41SWVUejRiWWNLTnFzTWQwaE53YzJ2eloyakd1dnFObnRKR1RwMnpTNzY3TnZpME8rNVNYU2dmMS9NZy85bjJYeWVnNzlLWU91L2FPWm9TUDVYcHZYOTNxcnBFUEN1UnBnMFp6SUk1d3JmMmNsalZDcjZZbEpCZlI0cy93NkJrMWNyeDhucjE3THZOL25CYytuc3RLSG8zOVo1RkZFTEhsZ1kzKy8rcklUK1JYRjhCUFBzOTdMZW5hR1RSSkI1eHQrcVVzcXVROStPaHRkV2JWOVRYdnUrcXo4RG5lMllkNnk5UWQySVZSNVdxdnBpeUhmUzMxSDJlRUljdWRUcEUwRFlBWGZsOTY4VEdUSHUvYjk0T3pvOFh6bmorLzYxZlA1bmJQNkxBUFBUSHFpZnhLejhZSXI3YjEyRkIweTNxckJ5VG5FckluUEM1Q3VkWTFaT0FYK3U2SHladk5RVzkwaVBVbU1HNkJub0h6ZnpiM2RDRVpNVE5SendrOFBOalgzZHdkOEtYdkhRemVYMDBPN1VIeHRwc0ZNRTlpWGg4OThobHIwMjF0L1ZmWnJRMzZmT1pFbmc5R1RPZDRqaDU1ME4zWkRqN2I5ckJiMzNIZStvTWRrWS9BQ3pSb2Y5UGQ5cnJIY25MNTkzbkhUYXF2QzhpV1Y4K2hYNzFEdS9MNXFad1ZsS1ZqSEt6bG1NMlp5M1ZxM3VCejM3Q2I0Mjc1ekhjeEhEVFRwOVBQcUsrZjcrL0N6dU8yYnhSNVBMWmk4Y2ZaWC9TRlk1N01NeStnNzcrY1BBK0tuSzdtV2NqL3YyYkJlZUZrNTVQTjJmZXphVkdrK2ZmTFN6OVp4aXh4L1B4aTd6dElMNGt1WDUyRmM1bWtRZnpxejg3cHFDUmRpQmYxaTV2emFWTGthVktjc3pDZXI4NVgxMWNYb0hvQnF2UjluY3ZKbkx2ejJHZS93dTdvNVBIbmMrbEN1anAzZzhKNVk1WjcwOENmc3lBNzM0VHBWM2pzZlZGNldacm5zdnl1ZG4vbGZFZjJnc2grTzNNVDZGdGtUdnBWTnI0SHNYRVJKWEYrNldSRk9IWThzQkl2R2pjWDljc2RPVTRlVHZPUzNmZkJmNTc1aVRjcnI4TEltZEQzbFcvRUwvMnBrMzZ2dmwzKzZ5OGM1WHU0YjBOUU9jOGpoN0U5Q1NkaE1aMjdPNWxLd2ViaHBjc1M5ekp5OGlMSUxsTTJuNFNRTXcreVJlZ0Z1TWk4eXpDYVhKWVV5N3ZuZmpCMjVxd29PVnlrOGVRL01tZjU3L1NsTVF6RWQwYUJIODZqZnlyemtzVko3c3pKdUxIK2VjdzVoMlBldVpjRlFaeFRRcFRmVUpNN1dVZ09jY1BZeWNMU09jc3dSckR3eTlYdDlmbjFGVjNOY0pPK2psNEYzcnh3WEViMDVobjd4d09NcjI3Rmh6UVhZSEZXaGxrUUY0OU9QajM3L2pmZ0E1c2s5QWJDMUtrMXJ1bjlCWWZOeVlRM0RlZmFiOGoxMjZ2YnNYVHJYbys5aHRnUXh6ZStIMGkzWXhmRjhyb2h1dzMzdW5aYmE3aU9HSGo0dTNVYXRkdHIvK3JhSFovOTlYY0tUUTRPL3lLTlMyVDZCWjNsYTFtczEwWFBiL2czb25UanVEZit6Ulc2QThtdDNmcDFjWHdyM1hqamVzTnpiMzMzUmhTZGhoY0Vyak9HQ1h5YTBlVktaOS9KNE9wL2xkSVY5NjlyN2RWcnNuOHRPazVqSERqMW01b2tOYno2alhRclhUblNsVFMrdnBZYXQ1THN1dzFKcmpkY1g1U2QyOXAxdzd1VmIyNngxZkc0MWh5SHdIRWNUa2pkWXAwUzZjUjlEYnlDM3YvSVVFSWdlcGtJbGJpbk5oNis4VksrSVZKdEYwcnk4OHloVldHUDVESDk4c1djUDQrSW1kTkFvQlVoR1FzRnJyZGsrWnNtc1VjZXFhUUJMb2Z4aEVDWjl1ZXA0MzFDamk4TDR5UUQwVEQvRWxYdTRMczAzTDI0Y2t5N1ZXa2E1RnpTTHUwWDdsNDZRdlYya1ZBa3dqd1BMb1NYSk05RFJKUEFuWmwvRjJ4UitEMEdiajJhNXNzZjN3UmJFbjdubCsvRStIWVd4QVRVZnp1ejZaVVpXNkozaGlxVXd5NTgzZ2s2TDZiYWlEc3JMQmlSS09WeCtIM3lTcEVsckxKQUlGRHhGSGJGODcxTGd6R0tYQzRzcHdGMm56b0NHMDZUT2ZPRklsdVRvc1FueWNKTklDd0I1NVV4d0N4T2lndkJDQXJhUXlvSFVWcXNoVkk5d1YxenlrNGFra1BBSjR3Rno4a0Q0aHR2UmEvNHVJRVF4SlNUL2drcnZabUVERElOSEZaTUlhazNlOGpnOTVjZ0N4Ti8zemI4UGFiQ3lXZTVzTGRabU5CdUllWGJoZDhoVEI3QWNINyt4NGNHNG9ZcDkxUEFoZ2hjWjR5Q0JRMEJBdHNnM25VTnBXSmpKNFFhKzV4aDZaQXgwakdjeEVsMlFzZER0VEJYd1dBTys0Sk9ZYlgxYS9wTWt5V0VCaUx0M0F2eDk4bVJHemc4QnY2RmNGY0lVWkpEemZod0V6SnNrcENENGZScXQrQVVnaE92aFVtNEFIRXkxTVZQZE93Nkt6TFVGMVNNbkZVWXpTTUJxZUxDeGpBNnRNeUpMWmh4YS9Na2RRTkVmeUQ0Z1lmK2dLUnpjbUVlbDRUV24xb2tJc2wzZEdCSFI4ajQ3V3pHRFVRaUViWEtzVkRVcDB6enRxQUFNOHpJdjJIeEU1MWJrZC9tOW9JTUpteVV6SXVEbEs0VWRhSmtIaGU3aUN1bU1PNnhvNmdXa1J4aGtRZHNUQzVCTjVnc0lkNmJVOTRwYlJJNGhtVlk3ekVwNlZkTVVOZm1DS2VUdkU0eCtabWZmMUhQMHFJOFhaWk9XT3dRN1ZDZWJiNUJETGd4ektlVk5GdTRlS2QwNnREN2xUeHpkM2pqaHBNSkJ6OG4zaWZmMnBPYXZFN2NnNjNYS2d5Z0VvTTRCOENWOG9heHgrWitCUmh2NG1Hc21hZTBleGxBbjRvV3A1QmptQ3UyQUxtdjIwNlBjbStRRnljTmpQT2VFckpmcUxCMFFsZzdFWW9FenIwbnVvK3krY0s3V0VlTU13clFWeGZheVdLdTdiRXgrRDdCS0NnSGNlbER2OUJoZVZVbHVSOFBPd25DZjlyazhWYmlRdUIrZXZNT0M4YUZVSmFUZWN5Q1BQL2dJRVZsSElDZi83bE9wQXdFeVU1YmpGYmVjbURMaVlkaE5nY2c1SjhUenpCSUVvTVVLMTZZbHNqOW5zdHVlUmZXeDUzS3ozVkFGR2VobDc5a0FMRFZmbFlSZzJvUmpQanErMVFJaExLSnJYYkEzZzU4UllHSXpPWVNiVWxNQWtTd1U1U0w5SDd3K1ZQelUrR29DU1lCL1NCbHlUcUNoMTZjWXJvdllVWGxOMkExZFFGdkc1R2UySGxLMmxNYkthU1cwOUNiYnNWNmUyVzUzUG1USHFKczE4dkhERnpnTUtmR3czd3lxTXZhRi9pK1hCR3d4S1B1L2R2Z3ZHVVJmcStJLzBFdGtYOTBpUHVhdWRFa2U1UEtSYVVMbkhoZnJER1NKWUEwZ1ZmckJvWGpPNFZqQUJMS3ZOc0tkTmMzaE8ycVVDNEx2eWRjR29lOUwvc250OU9zSS95UHdFZWVQejZQTjlwemRpalRJeHFDRHlXaXhTL0wwNDc5RkYxRUlkejVQdXJ1VHpKTXVwWXZhbzJyaStyL2tWVEhrWGJBaUJhL0xCVnQvbHlTUzNwNVBTOHVrU2pPT1oyNVBCSkdDUXJ2WTJuNDZtZmlWREYxY0doTWh5REl4YWNoUkU5QytBeFl4amExVXlkd3FIcjlIZzIvLzlrMDkvbjB1SjN1M2hVbVRDR25GenlxOWZ0VzBSS2YwSWp1SHB0QTIzVjYrOUx5V2dJMGZoT09tbCtVY0k2OERMMDlRUVRHTm5xa2g2WDhvTGZjcnZQbWNidmhtSEczK3RIQ2VWNnM0WVAwMUNHZXp6R0V6ekg2elYwV2VpamFEc1FNdmd1L3BmekdmNFhwOTlhVFpaaHR2ZncxeHhTSlFTYjdibW1kbnRYKzdWUko5OUw1Z2NTdEYrc0Q4eHk0a0xabHdYL1B3NHhMdXVlNnNsOHVhMFowT0RwR0NjYTZuTWE1Mzd2Tjl5RjR3QUNIRHhqd1NhTTg5ZDROQUwvWkVZTE92c29vcGJrNnA4Y2xoS0d6cnpPbG4rM2tKNE1PK0p1MEVMWHRhclE4dGFmc2NQYlBPMW5tME1RUUZrRzBmLy9ESnlsRTRDVHRjZmhCTm9TeEg2ejJWbmJhOFB5Tmc0SitDdlFQeVBSaGZqTEhEZGhwWTMwdVV4QXZUb2h6REYyTE1FdGluakVMREdGa2RKNjFxWk5UODVzbDh3a3YzOVJvMEhNMjEySFU5V1JmVjJ3V3JIL2U4d1luNURpVmN0WFR0MVBrK05LdjBTdnRWRVd0VDA5MWVFcVg2VmVseGhZSC84NjVWeGI2YW9pZGNOdEIxMTV0S3AxMU92VDI5MjgzN1I0YzhpbHYrL011NXVTRmxmb08vL1dhMUpEcmtpeEpZZ096blpQL2lKTmwzTW56K2ZiWFlILzlMNFBnWFV5aU53QUEifQ==",
+            "DCOS_PACKAGE_FRAMEWORK_NAME": "infra/edgelb/pools/main",
+            "DCOS_PACKAGE_NAME": "edgelb-pool",
+            "DCOS_PACKAGE_OPTIONS": "eyJzZXJ2aWNlIjp7Im5hbWUiOiJpbmZyYS9lZGdlbGIvcG9vbHMvbWFpbiIsInNlY3JldE5hbWUiOiJpbmZyYS9lZGdlbGIvZWRnZWxiLXNlY3JldCIsInByaW5jaXBhbCI6ImVkZ2VsYi1wcmluY2lwYWwiLCJtZXNvc0F1dGhOWiI6ImVuYWJsZWQiLCJtZXRyaWNzUHJlZml4IjoiZGNvcyIsImRlcGxveW1lbnRQYXRoIjoiL2luZnJhL2VkZ2VsYiIsImRpc2FibGVUTFNBdXRoIjpmYWxzZSwiZWMyTWV0YWRhdGFTY2hlbWUiOiJodHRwIiwiZWMyTWV0YWRhdGFIb3N0IjoiMTY5LjI1NC4xNjkuMjU0IiwiZWMyTWV0YWRhdGFQYXRoIjoiL2xhdGVzdC9tZXRhLWRhdGEvIiwiZWMyTWV0YWRhdGFGZXRjaCI6ZmFsc2V9LCJlZGdlbGJQb29sIjp7Im5hbWUiOiJtYWluIiwiY291bnQiOjIsImRpc2siOjI1NiwibWVtIjo0MDk2LCJlbnYiOlt7ImtleSI6IkFQSVNFUlZFUl9SUENfVklQIiwidmFsdWUiOiJycGMuaW5mcmFlZGdlbGIubWFyYXRob24ubDRsYi50aGlzZGNvcy5kaXJlY3Rvcnk6ODA4MSJ9LHsia2V5IjoiRlJPTlRFTkRfTkFNRV8zWFVVOHRTY3ZmYkl5Z2ZodTdvME5DUTZLbSIsInZhbHVlIjoiZnJvbnRlbmRfMC4wLjAuMF84MCJ9LHsia2V5IjoiRlJPTlRFTkRfUE9SVF8zWFVVOHRTY3ZmYkl5Z2ZodTdvME5DUTZLbSIsInZhbHVlIjoiODAifSx7ImtleSI6IkZST05URU5EX05BTUVfRWNIc1NqMENrN20yTWFDREhrRVRYbkhsM3JQIiwidmFsdWUiOiJmcm9udGVuZF8wLjAuMC4wXzQ0MyJ9LHsia2V5IjoiRlJPTlRFTkRfUE9SVF9FY0hzU2owQ2s3bTJNYUNESGtFVFhuSGwzclAiLCJ2YWx1ZSI6IjQ0MyJ9LHsia2V5IjoiRlJPTlRFTkRfTkFNRV80MURFMjVVOXhHbTJEcjVwT3R4bUlBNkxDVWszbk8iLCJ2YWx1ZSI6ImZyb250ZW5kXzAuMC4wLjBfMjIyMjIifSx7ImtleSI6IkZST05URU5EX1BPUlRfNDFERTI1VTl4R20yRHI1cE90eG1JQTZMQ1VrM25PIiwidmFsdWUiOiIyMjIyMiJ9LHsia2V5IjoiSEFQUk9YWV9TVEFUU19QT1JUIiwidmFsdWUiOiI5MDkwIn1dLCJjcHVzIjo2LCJwbGFjZW1lbnRDb25zdHJhaW50cyI6Imhvc3RuYW1lOlVOSVFVRSIsImF1dG9DZXJ0RW5hYmxlZCI6InRydWUiLCJyb2xlIjoic2xhdmVfcHVibGljIiwiaGVhbHRoY2hlY2tHcmFjZVBlcmlvZCI6MTgwLCJoZWFsdGhjaGVja0ludGVydmFsIjoxMiwiaGVhbHRoY2hlY2tNYXhmYWlsIjo1LCJoZWFsdGhjaGVja0NtZEV4ZWN1dGlvblRpbWVvdXQiOjEyLCJoZWFsdGhjaGVja1RpbWVvdXQiOjYwfX0=",
+            "DCOS_PACKAGE_SOURCE": "https://universe.mesosphere.com/repo",
+            "DCOS_PACKAGE_VERSION": "v1.6.1",
+            "DCOS_SERVICE_NAME": "infra/edgelb/pools/main",
+            "DCOS_SERVICE_PORT_INDEX": "0",
+            "DCOS_SERVICE_SCHEME": "http",
+            "MARATHON_SINGLE_INSTANCE_APP": "true"
+        },
+        "fetch": [
+            {
+                "uri": "https://downloads.mesosphere.com/java/openjdk-jre-11.0.3.7-hotspot-linux-x64.tar.gz",
+                "executable": false,
+                "extract": true,
+                "cache": false
+            },
+            {
+                "uri": "https://downloads.mesosphere.com/edgelb-pool/assets/v1.6.1/edgelb-pool-scheduler.zip",
+                "executable": false,
+                "extract": true,
+                "cache": false
+            },
+            {
+                "uri": "https://downloads.mesosphere.com/libmesos-bundle/libmesos-bundle-1.14-beta.tar.gz",
+                "executable": false,
+                "extract": true,
+                "cache": false
+            },
+            {
+                "uri": "https://downloads.mesosphere.com/dcos-commons/artifacts/0.57.3/bootstrap.zip",
+                "executable": false,
+                "extract": true,
+                "cache": false
+            }
+        ],
+        "role": "infra",
+        "env": {
+            "ALLOW_REGION_AWARENESS": "true",
+            "CONTAINER_LOGGER_LOGROTATE_MAX_STDERR_SIZE": "25MB",
+            "CONTAINER_LOGGER_LOGROTATE_MAX_STDOUT_SIZE": "25MB",
+            "CONTAINER_LOGGER_LOGROTATE_STDERR_OPTIONS": "rotate 4",
+            "CONTAINER_LOGGER_LOGROTATE_STDOUT_OPTIONS": "rotate 4",
+            "DCOS_SECRET_NAME": "infra/edgelb/edgelb-secret",
+            "DCOS_SERVICE_ACCOUNT_CREDENTIAL": {
+                "secret": "serviceCredential"
+            },
+            "DEPLOYMENT_PATH": "/infra/edgelb",
+            "DISABLE_TLS_AUTH": "false",
+            "EC2_METADATA_FETCH": "false",
+            "EC2_METADATA_HOST": "169.254.169.254",
+            "EC2_METADATA_PATH": "/latest/meta-data/",
+            "EC2_METADATA_SCHEME": "http",
+            "FRAMEWORK_NAME": "infra/edgelb/pools/main",
+            "FRAMEWORK_PRINCIPAL": "edgelb-principal",
+            "FRAMEWORK_USER": "root",
+            "JAVA_URI": "https://downloads.mesosphere.com/java/openjdk-jre-11.0.3.7-hotspot-linux-x64.tar.gz",
+            "LIBMESOS_URI": "https://downloads.mesosphere.com/libmesos-bundle/libmesos-bundle-1.14-beta.tar.gz",
+            "MESOS_API_VERSION": "V1",
+            "MESOS_AUTHENTICATEE": "com_mesosphere_dcos_ClassicRPCAuthenticatee",
+            "MESOS_HTTP_AUTHENTICATEE": "com_mesosphere_dcos_http_Authenticatee",
+            "MESOS_MODULES": "{\"libraries\":[{\"file\":\"libmesos-bundle/lib/mesos/libdcos_security.so\",\"modules\":[{\"name\": \"com_mesosphere_dcos_ClassicRPCAuthenticatee\"},{\"name\":\"com_mesosphere_dcos_http_Authenticatee\",\"parameters\":[{\"key\":\"jwt_exp_timeout\",\"value\":\"5mins\"},{\"key\":\"preemptive_refresh_duration\",\"value\":\"30mins\"}]}]}]}",
+            "METRICS_PREFIX": "dcos",
+            "PACKAGE_BUILD_TIME_EPOCH_MS": "1593191104382",
+            "PACKAGE_BUILD_TIME_STR": "Fri Jun 26 2020 17:05:04 +0000",
+            "PACKAGE_NAME": "edgelb-pool",
+            "PACKAGE_VERSION": "v1.6.1",
+            "POOL_AUTOCERT_ENABLED": "true",
+            "POOL_CONSTRAINTS": "hostname:UNIQUE",
+            "POOL_COUNT": "2",
+            "POOL_CPUS": "6",
+            "POOL_DISK": "256",
+            "POOL_ENVFILE_RELATIVE_PATH": "envfile",
+            "POOL_HEALTHCHECK_CMD_EXECUTION_TIMEOUT": "12",
+            "POOL_HEALTHCHECK_GRACE_PERIOD": "180",
+            "POOL_HEALTHCHECK_INTERVAL": "12",
+            "POOL_HEALTHCHECK_MAXFAIL": "5",
+            "POOL_HEALTHCHECK_TIMEOUT": "60",
+            "POOL_IMAGE": "mesosphere/dhap:v1.6.1",
+            "POOL_MEM": "4096",
+            "POOL_NAME": "main",
+            "POOL_PORTS": "",
+            "POOL_RELATIVE_VOLUME_PATH": "persistent",
+            "POOL_RESERVED_ROLE": "slave_public",
+            "POOL_SECRETS_RELATIVE_PATH": "secrets",
+            "TASKCFG_ALL_APISERVER_RPC_VIP": "rpc.infraedgelb.marathon.l4lb.thisdcos.directory:8081",
+            "TASKCFG_ALL_FRONTEND_NAME_3XUU8tScvfbIygfhu7o0NCQ6Km": "frontend_0.0.0.0_80",
+            "TASKCFG_ALL_FRONTEND_NAME_41DE25U9xGm2Dr5pOtxmIA6LCUk3nO": "frontend_0.0.0.0_22222",
+            "TASKCFG_ALL_FRONTEND_NAME_EcHsSj0Ck7m2MaCDHkETXnHl3rP": "frontend_0.0.0.0_443",
+            "TASKCFG_ALL_FRONTEND_PORT_3XUU8tScvfbIygfhu7o0NCQ6Km": "80",
+            "TASKCFG_ALL_FRONTEND_PORT_41DE25U9xGm2Dr5pOtxmIA6LCUk3nO": "22222",
+            "TASKCFG_ALL_FRONTEND_PORT_EcHsSj0Ck7m2MaCDHkETXnHl3rP": "443",
+            "TASKCFG_ALL_HAPROXY_STATS_PORT": "9090"
+        },
+        "secrets": {
+            "serviceCredential": {
+                "source": "infra/edgelb/edgelb-secret"
+            }
+        }
+    }
+]

@@ -23,8 +23,9 @@
 package util
 
 import (
-	"fmt"
+	"io/ioutil"
 	"log"
+	"strings"
 
 	"github.com/sergi/go-diff/diffmatchpatch"
 )
@@ -36,9 +37,57 @@ func CheckError(e error) {
 	}
 }
 
-// GenerateDiff outputs a diff from two strings
-func GenerateDiff(left, right string) {
+// DiffText outputs a diff from two strings
+func DiffText(left, right string) (string, string) {
 	dmp := diffmatchpatch.New()
 	diffs := dmp.DiffMain(left, right, false)
-	fmt.Println(dmp.DiffPrettyText(diffs))
+	return dmp.DiffPrettyText(diffs), dmp.DiffPrettyHtml(diffs)
+}
+
+// DiffMissing returns the left and right missing strings from 2 string slices
+func DiffMissing(left, right []string) ([]string, []string) {
+	mapLeft := sliceToMap(left)
+	mapRight := sliceToMap(right)
+
+	missingLeft := []string{}
+	missingRight := []string{}
+
+	for _, l := range left {
+		if !mapRight[l] {
+			missingRight = append(missingRight, l)
+		}
+	}
+
+	for _, r := range right {
+		if !mapLeft[r] {
+			missingLeft = append(missingLeft, r)
+		}
+	}
+
+	return missingLeft, missingRight
+}
+
+// GetFileBytes returns bytes from a file when there is no error
+func GetFileBytes(path string) []byte {
+	dat, err := ioutil.ReadFile(path)
+	CheckError(err)
+	return dat
+}
+
+// SliceToBlock takes a slice of strings and joins them with newlines
+func SliceToBlock(lines []string) string {
+	return strings.Join(lines, "\n")
+}
+
+// BlockToSlice takes a slice of strings and joins them with newlines
+func BlockToSlice(lines string) []string {
+	return strings.Split(lines, "\n")
+}
+
+func sliceToMap(lines []string) map[string]bool {
+	m := make(map[string]bool, len(lines))
+	for _, l := range lines {
+		m[l] = true
+	}
+	return m
 }

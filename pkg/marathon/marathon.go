@@ -34,22 +34,26 @@ type App struct {
 	ID string `json:"id"`
 }
 
-// Diff WIP
-func Diff() {
-
+// GetAppIDs returns list of App IDs as strings
+func GetAppIDs(apps []*App) []string {
+	appIDs := []string{}
+	for _, a := range apps {
+		appIDs = append(appIDs, a.ID)
+	}
+	return appIDs
 }
 
-// GetAppList returns list of Apps
-func GetAppList() []App {
+// GetApps returns list of Apps
+func GetApps() []*App {
 	cmd := exec.Command("dcos", "marathon", "app", "list", "--json")
 	output, err := cmd.Output()
 	util.CheckError(err)
-	return GetAppListFromBytes(output)
+	return GetAppsFromBytes(output)
 }
 
-// GetAppListFromBytes returns list of Apps from bytes
-func GetAppListFromBytes(input []byte) []App {
-	var s []App
+// GetAppsFromBytes returns list of Apps from bytes
+func GetAppsFromBytes(input []byte) []*App {
+	var s []*App
 	json.Unmarshal(input, &s)
 	return s
 }

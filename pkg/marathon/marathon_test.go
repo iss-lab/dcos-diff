@@ -24,8 +24,25 @@ package marathon
 
 import (
 	"testing"
+
+	"github.com/iss-lab/dcos-diff/pkg/util"
 )
 
-func TestDiff(t *testing.T) {
-	t.Fatal("Nothing to test yet")
+func getTestApps() []*App {
+	b := util.GetFileBytes("./testApps.json")
+	return GetAppsFromBytes(b)
+}
+
+func TestGetAppIDs(t *testing.T) {
+	appIDs := GetAppIDs(getTestApps())
+	if len(appIDs) != 5 {
+		t.Fatal("Incorrect number of appIDs")
+	}
+}
+
+func TestGetAppsFromBytes(t *testing.T) {
+	apps := getTestApps()
+	if len(apps) != 5 {
+		t.Fatal("Incorrect number of apps")
+	}
 }
