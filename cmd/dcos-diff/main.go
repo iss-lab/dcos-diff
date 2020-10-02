@@ -22,6 +22,18 @@
 
 package main
 
-func main() {
+// import (
+// 	"github.com/iss-lab/dcos-diff/pkg/cluster"
+// 	"github.com/iss-lab/dcos-diff/pkg/manifest"
+// )
 
+func main() {
+	// Gather arguments
+	// Validate them
+	// Help text, etc
+
+	// clusterSpec = cluster.New(some args)
+	// manifestSpec = manifest.New(some args)
+
+	// manifestSpec.Diff(ClusterSpec)
 }
