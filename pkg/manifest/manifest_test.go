@@ -33,7 +33,7 @@ const testAppIDsBlock = `/data/arangodb3
 /kubernetes`
 
 func TestNew(t *testing.T) {
-	m := New("./testManifest")
+	m := New("./testManifest", 4)
 
 	if len(m.AppIDs) != 5 {
 		t.Fatalf("Incorrect number of appIDs: %+v", len(m.AppIDs))
