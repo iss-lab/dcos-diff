@@ -22,18 +22,88 @@
 
 package main
 
-// import (
-// 	"github.com/iss-lab/dcos-diff/pkg/cluster"
-// 	"github.com/iss-lab/dcos-diff/pkg/manifest"
-// )
+import (
+	"bufio"
+	"flag"
+	"fmt"
+	"log"
+	"os"
+	"strconv"
+	"strings"
+	"text/tabwriter"
+
+	"github.com/iss-lab/dcos-diff/pkg/util"
+
+	"github.com/iss-lab/dcos-diff/pkg/config"
+)
+
+var manifestPath string
+var clusterID string
+
+func init() {
+	flag.StringVar(
+		&manifestPath,
+		"manifest_path",
+		"./",
+		"path to directory containing dcos service manifest")
+	flag.StringVar(
+		&clusterID,
+		"cluster_id",
+		"",
+		"dcos cluster id to use with dcos cli commands")
+}
 
 func main() {
-	// Gather arguments
-	// Validate them
-	// Help text, etc
+	flag.Parse()
 
-	// clusterSpec = cluster.New(some args)
-	// manifestSpec = manifest.New(some args)
+	clusters := config.GetClusters()
 
-	// manifestSpec.Diff(ClusterSpec)
+	if len(clusterID) == 0 && len(clusters) > 1 {
+		printClusters(clusters)
+
+		reader := bufio.NewReader(os.Stdin)
+		fmt.Print("Choose a cluster by index: ")
+
+		clusterIndexStr, err := reader.ReadString('\n')
+		clusterIndexStr = strings.TrimRight(clusterIndexStr, "\n")
+		util.CheckError(err)
+
+		if len(clusterIndexStr) == 0 {
+			log.Fatal("empty cluster index given, exiting")
+		}
+
+		clusterIndex, err := strconv.Atoi(clusterIndexStr)
+		util.CheckError(err)
+
+		// Convert to 0 based index
+		clusterIndex--
+		if clusterIndex > len(clusters)-1 || clusterIndex < 0 {
+			log.Fatal("invalid cluster index given, exiting")
+		}
+		clusterID = clusters[clusterIndex].ClusterID
+	}
+
+	cfg := config.New(clusterID, clusters)
+
+	cfg.EnsureCluster()
+}
+
+func printClusters(clusters []*config.Cluster) {
+	w := new(tabwriter.Writer)
+	w.Init(os.Stdout, 8, 8, 0, '\t', 0)
+
+	defer w.Flush()
+
+	fmt.Fprintf(w, "\n %s\t%s\t%s\t%s\t%s\t", "Index", "Name", "URL", "Version", "Cluster ID")
+	fmt.Fprintf(w, "\n %s\t%s\t%s\t%s\t%s\t", "----", "----", "----", "----", "----")
+
+	for i, c := range clusters {
+		fmt.Fprintf(w, "\n %d\t%s\t%s\t%s\t%s\t", i+1, c.Name, c.URL, c.Version, c.ClusterID)
+	}
+
+	fmt.Fprint(w, "\n\n")
+}
+
+func dcosDiff() {
+
 }
