@@ -132,6 +132,11 @@ func getDirNames(basePath string, levels int, prefix string, accum []string) []s
 		accum = []string{}
 	}
 
+	// TODO: Change this to check a list of ignored dirs
+	if prefix == "/.git" {
+		return accum
+	}
+
 	infos, err := ioutil.ReadDir(basePath + "/" + prefix)
 	util.CheckError(err)
 

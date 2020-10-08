@@ -32,9 +32,10 @@ import (
 	"strings"
 	"text/tabwriter"
 
-	"github.com/iss-lab/dcos-diff/pkg/util"
-
 	"github.com/iss-lab/dcos-diff/pkg/config"
+	"github.com/iss-lab/dcos-diff/pkg/manifest"
+	"github.com/iss-lab/dcos-diff/pkg/marathon"
+	"github.com/iss-lab/dcos-diff/pkg/util"
 )
 
 var manifestPath string
@@ -86,6 +87,15 @@ func main() {
 	cfg := config.New(clusterID, clusters)
 
 	cfg.EnsureCluster()
+
+	runningApps := marathon.GetApps()
+	runningAppIDs := marathon.GetAppIDs(runningApps)
+
+	mft := manifest.New(manifestPath, 0)
+
+	missingLocal, missingRemote := util.DiffMissing(mft.AppIDs, runningAppIDs)
+
+	printMissing(missingLocal, missingRemote)
 }
 
 func printClusters(clusters []*config.Cluster) {
@@ -99,6 +109,39 @@ func printClusters(clusters []*config.Cluster) {
 
 	for i, c := range clusters {
 		fmt.Fprintf(w, "\n %d\t%s\t%s\t%s\t%s\t", i+1, c.Name, c.URL, c.Version, c.ClusterID)
+	}
+
+	fmt.Fprint(w, "\n\n")
+}
+
+func printMissing(local, remote []string) {
+
+	l := len(local)
+	r := len(remote)
+	max := l
+	if r > max {
+		max = r
+	}
+
+	w := new(tabwriter.Writer)
+	w.Init(os.Stdout, 8, 8, 0, '\t', 0)
+
+	defer w.Flush()
+
+	fmt.Fprintf(w, "\n %s\t%s\t", "Missing Local", "Missing Remote")
+	fmt.Fprintf(w, "\n %s\t%s\t", "----", "----")
+
+	for i := 0; i < max; i++ {
+		lStr := " "
+		rStr := " "
+		if i < l {
+			lStr = local[i]
+		}
+		if i < r {
+			rStr = remote[i]
+		}
+
+		fmt.Fprintf(w, "\n %s\t%s\t", lStr, rStr)
 	}
 
 	fmt.Fprint(w, "\n\n")

@@ -33,7 +33,9 @@ import (
 // CheckError logs a fatal error and exits when an error is passed
 func CheckError(e error) {
 	if e != nil {
-		log.Fatal(e)
+		// TODO: Fatal exit is prefered usually, but stack traces are nice.
+		log.Panic(e)
+		// log.Fatal(e)
 	}
 }
 
