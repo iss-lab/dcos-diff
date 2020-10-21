@@ -8,7 +8,7 @@
 
 DCOS gives users the ability to launch a wide arary of services and configure them at runtime. Each of these services can be defined by a number of configuration files (like `marathon.json` for basic apps, or `options.json` for more complex serivces), resources (like required `artifacts`, or `secrets`), and interactions with other services (like `ingress` rules for EdgeLB, or S3 access `accounts` in Minio).
 
-While it is possible to manage all of these configurations, resources, and interacions completely through the provided Web UI and CLI tools provided by DCOS, operators running real-world workloads will quickly realize the need to keep all of these things organized in source control. Due to the currently available methodologies for deploying services (primarily Marathon App definitions and DCOS Commons SDK based Mesos Frameworks), it can be difficult to create a set of unified, one-size-fits-all scripts and automations for deploying and updating service configurations.
+While it is possible to manage all of these configurations, resources, and interactions completely through the provided Web UI and CLI tools provided by DCOS, operators running real-world workloads will quickly realize the need to keep all of these things organized in source control. Due to the currently available methodologies for deploying services (primarily Marathon App definitions and DCOS Commons SDK based Mesos Frameworks), it can be difficult to create a set of unified, one-size-fits-all scripts and automations for deploying and updating service configurations.
 
 In other words, you need to be a DCOS and/or Apache Mesos expert to successfully manage a large number of services.
 
