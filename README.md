@@ -20,6 +20,29 @@ Once the `service manifest` has been created, tooling is also needed to calculat
 
 ## Service Manifest Format
 
+### Folder Layout
+
+The structure of the folders in a `manifest` correspond directly to the service paths / folders / groups that those services will reside in within a running DCOS cluster. Take the following example:
+
+```
+data/
+├── miniod/
+│   └── options.json
+│   └── secret_paths.env
+│   └── secrets.env
+│   └── sa.env
+│   └── keys/
+│   │   └── private.pem
+│   │   └── public.pem
+```
+
+The above definition results in the following DCOS resources and deployments:
+
+* Maraton app running the `miniod` package scheduler at the path `/data/miniod/`
+* Service account named `miniod-principal`
+* Secret containing the private key for that service account at the path `data/miniod/miniod-secret`
+* Secrets located at paths `data/miniod/access_key` and `data/miniod/secret_key` as defined in the `secret_paths.env` and `secrets.env`
+
 ### Service Definition
 
 An individual DCOS service can be defined by a folder with the following contents:
@@ -28,8 +51,18 @@ An individual DCOS service can be defined by a folder with the following content
 * `service.env`: An **optional** env file containing keys and values needed to run install and update commands against a cluster. These include:
   * `PACKAGE_NAME`: Name of the package from the catalog.
   * `PACKAGE_VERSION`: Version string of the package from the catalog.
-  * `SA_PRINCIPAL`: 
-  * `SA_SECRET`:
+* `sa.env`: An **optional** env file. When empty, default values for the `principal` and `secret` names will be used (the name of the folder + `-principal` or `-secret`). These values can be overidden with these keys in `sa.env`
+  * `SA_PRINCIPAL`
+  * `SA_SECRET`
+* `secret_paths.env`:
+* `secrets.env`:
+
+### MKE-Based Kubernetes Cluster Definition
+
+A Kubernetes cluster can be defined very much like a service, since they are basically another service definition, but the `options.json` is replaced with a `k8s.json` to ensure that the correct commands are used to deploy / update the cluster. A folder with these files defines a Kubernetes cluster:
+
+* `k8s.json`: Same as `options.json` used for `dcos kubernetes ...` commands
+* `service.env`: Same as service definition, default `PACKAGE_NAME` being `kubernetes-cluster`
 
 ### Cluster Definition
 
