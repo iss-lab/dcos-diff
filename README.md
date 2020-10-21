@@ -6,7 +6,7 @@
 
 ### Problem Statement
 
-DCOS gives users the ability to launch a wide arary of services and configure them at runtime. Each of these services can be defined by a number of configuration files (like `marathon.json` for basic apps, or `options.json` for more complex serivces), resources (like required `artifacts`, or `secrets`), and interactions with other services (like `ingress` rules for EdgeLB, or S3 access `accounts` in Minio).
+DCOS gives users the ability to launch a wide array of services and configure them at runtime. Each of these services can be defined by a number of configuration files (like `marathon.json` for basic apps, or `options.json` for more complex services), resources (like required `artifacts`, or `secrets`), and interactions with other services (like `ingress` rules for EdgeLB, or S3 access `accounts` in Minio).
 
 While it is possible to manage all of these configurations, resources, and interactions completely through the provided Web UI and CLI tools provided by DCOS, operators running real-world workloads will quickly realize the need to keep all of these things organized in source control. Due to the currently available methodologies for deploying services (primarily Marathon App definitions and DCOS Commons SDK based Mesos Frameworks), it can be difficult to create a set of unified, one-size-fits-all scripts and automations for deploying and updating service configurations.
 
@@ -38,7 +38,7 @@ data/
 
 The above definition results in the following DCOS resources and deployments:
 
-* Maraton app running the `miniod` package scheduler at the path `/data/miniod/`
+* Marathon app running the `miniod` package scheduler at the path `/data/miniod/`
 * Service account named `miniod-principal`
 * Secret containing the private key for that service account at the path `data/miniod/miniod-secret`
 * Secrets located at paths `data/miniod/access_key` and `data/miniod/secret_key` as defined in the `secret_paths.env` and `secrets.env`
@@ -51,7 +51,7 @@ An individual DCOS service can be defined by a folder with the following content
 * `service.env`: An **optional** env file containing keys and values needed to run install and update commands against a cluster. These include:
   * `PACKAGE_NAME`: Name of the package from the catalog.
   * `PACKAGE_VERSION`: Version string of the package from the catalog.
-* `sa.env`: An **optional** env file. When empty, default values for the `principal` and `secret` names will be used (the name of the folder + `-principal` or `-secret`). These values can be overidden with these keys in `sa.env`
+* `sa.env`: An **optional** env file. When empty, default values for the `principal` and `secret` names will be used (the name of the folder + `-principal` or `-secret`). These values can be overridden with these keys in `sa.env`
   * `SA_PRINCIPAL`
   * `SA_SECRET`
 * `secret_paths.env`:
