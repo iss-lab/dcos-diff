@@ -1,0 +1,76 @@
+{
+  "id": "/data/arangodb3",
+  "role": "data",
+  "cmd": null,
+  "cpus": 5,
+  "mem": 2000,
+  "disk": 0,
+  "gpus": 0,
+  "instances": 1,
+  "constraints": [
+    [
+      "hostname",
+      "CLUSTER",
+      "10.1.1.1"
+    ]
+  ],
+  "acceptedResourceRoles": ["*"],
+  "container": {
+    "type": "MESOS",
+    "docker": {
+      "forcePullImage": false,
+      "image": "arangodb:3.7",
+      "parameters": [],
+      "privileged": false
+    },
+    "volumes": [
+      {
+        "containerPath": "var",
+        "persistent": {
+          "type": "root",
+          "size": 1000,
+          "constraints": []
+        },
+        "mode": "RW"
+      },
+      {
+        "containerPath": "/var/lib/arangodb3",
+        "hostPath": "var",
+        "mode": "RW"
+      }
+    ],
+    "portMappings": [
+      {
+        "containerPort": 8529,
+        "hostPort": 0,
+        "labels": {
+          "VIP_0": "/data/arangodb3:8529"
+        },
+        "name": "arangodb3",
+        "protocol": "tcp",
+        "servicePort": 10032
+      }
+    ]
+  },
+  "env": {
+    "ARANGO_ROOT_PASSWORD": {
+      "secret": "arangodb3_root_password"
+    } 
+  },
+  "networks": [
+    {
+      "mode": "container/bridge"
+    }
+  ],
+  "portDefinitions": [],
+  "maxLaunchDelaySeconds": 300,
+  "upgradeStrategy": {
+    "maximumOverCapacity": 0,
+    "minimumHealthCapacity": 0.5
+  },
+  "secrets": {
+    "arangodb3_root_password": {
+      "source": "data/arangodb3/arangodb3_root_password"
+    }
+  }
+}

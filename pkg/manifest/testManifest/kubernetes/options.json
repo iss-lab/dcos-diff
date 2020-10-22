@@ -1,0 +1,13 @@
+{
+  "service": {
+    "service_account": "kubernetes-principal",
+    "service_account_secret": "kubernetes/kubernetes-secret"
+  },
+  "mesosphere_kubernetes_engine": {
+    "resources": {
+      "cpus": 0.5,
+      "mem": 1024
+    },
+    "verbose": false
+  }
+}

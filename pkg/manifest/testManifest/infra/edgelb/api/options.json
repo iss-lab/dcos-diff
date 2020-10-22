@@ -1,0 +1,27 @@
+{
+  "service": {
+    "name": "infra/edgelb",
+    "cpus": 1,
+    "mem": 1024,
+    "apiserverProtocol": "http",
+    "zkHosts": "zk-1.zk:2181,zk-2.zk:2181,zk-3.zk:2181,zk-4.zk:2181,zk-5.zk:2181",
+    "zkTimeout": "60s",
+    "zkPath": "/edgelb",
+    "forcePull": false,
+    "dcosAddress": "leader.mesos",
+    "dcosProtocol": "https",
+    "mesosAddress": "leader.mesos:5050",
+    "mesosProtocol": "https",
+    "secretName": "infra/edgelb/edgelb-secret",
+    "principal": "edgelb-principal",
+    "ec2MetadataFetch": false,
+    "mesosAuthNZ": true,
+    "logLevel": "info",
+    "metricsPrefix": "dcos",
+    "rpcVipPort": 8081,
+    "awsAccessKeyId": "",
+    "awsSecretAccessKey": "",
+    "awsRegion": "",
+    "defaultPoolTemplate": false
+  }
+}

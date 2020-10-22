@@ -1,0 +1,69 @@
+{
+  "apiVersion": "V2",
+  "name": "main",
+  "namespace": "infra/edgelb/pools",
+  "count": 2,
+  "cpus": 6,
+  "cpusAdminOverhead": 0.1,
+  "mem": 4096,
+  "memAdminOverhead": 32,
+  "disk": 256,
+  "autoCertificate": true,
+  "constraints": "hostname:UNIQUE",
+  "role": "slave_public",
+  "haproxy": {
+    "stats": {
+      "bindPort": 9090
+    },
+    "frontends": [
+      {
+        "bindPort": 80,
+        "protocol": "HTTP",
+        "linkBackend": {
+          "map": [
+            {
+              "hostReg": "^dcos-monitoring\\..*$",
+              "backend": "dcos-monitoring"
+            },
+            {
+              "hostReg": "^minio\\..*$",
+              "backend": "minio"
+            }
+          ]
+        }
+      }
+    ],
+    "backends": [
+      {
+        "name": "dcos-monitoring",
+        "protocol": "HTTP",
+        "services": [
+          {
+            "mesos": {
+              "frameworkName": "infra/dcos-monitoring",
+              "taskName": "grafana-0-server"
+            },
+            "endpoint": {
+              "portName": "grafana"
+            }
+          }
+        ]
+      },
+      {
+        "name": "minio",
+        "protocol": "HTTP",
+        "services": [
+          {
+            "mesos": {
+              "frameworkName": "/data/miniod",
+              "taskNamePattern": "^miniod-.*-node$"
+            },
+            "endpoint": {
+              "allPorts": true
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

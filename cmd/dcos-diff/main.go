@@ -131,6 +131,16 @@ func printMissing(local, remote []string) {
 	fmt.Fprintf(w, "\n %s\t%s\t", "Missing Local", "Missing Remote")
 	fmt.Fprintf(w, "\n %s\t%s\t", "----", "----")
 
+	// data/
+	// ├── miniod/
+	// │   └── options.json
+	// │   └── secret_paths.env
+	// │   └── secrets.env
+	// │   └── sa.env
+	// │   └── keys/
+	// │   │   └── private.pem
+	// │   │   └── public.pem
+
 	for i := 0; i < max; i++ {
 		lStr := " "
 		rStr := " "

@@ -1,0 +1,30 @@
+{
+  "service": {
+    "name": "infra/consul",
+    "virtual_network_enabled": false,
+    "log_level": "INFO",
+    "deploy_strategy": "parallel",
+    "update_strategy": "serial"
+  },
+  "node": {
+    "count": 3,
+    "placement_constraint": "[[\"hostname\", \"UNIQUE\"]]",
+    "cpus": 2,
+    "mem": 1024,
+    "disk": 1000,
+    "disk_type": "ROOT"
+  },
+  "consul": {
+    "server_port": 8300,
+    "serf_lan_port": 8301,
+    "serf_wan_port_enabled": false,
+    "http_port": 8500,
+    "http_port_enabled": true,
+    "dns_port_enabled": false,
+    "grpc_port_enabled": false,
+    "security": {
+      "gossip_encryption_key": "",
+      "transport_encryption_enabled": false
+    }
+  }
+}

@@ -24,24 +24,33 @@ package manifest
 
 import (
 	"testing"
+
+	"github.com/iss-lab/dcos-diff/pkg/util"
 )
 
-const testAppIDsBlock = `/data/arangodb3
-/infra/consul
-/infra/edgelb/api
-/infra/edgelb/pools/main
-/kubernetes`
+var testAppIDs = []string{
+	"/data/arangodb3",
+	"/infra/consul",
+	"/infra/edgelb/api",
+	"/infra/edgelb/pools/main",
+	"/kubernetes`",
+}
 
-func TestNew(t *testing.T) {
-	m := New("./testManifest", 4)
+func getTestManifest() *Manifest {
+	return New("./testManifest", 4)
+}
+
+func TestGetAppIDs(t *testing.T) {
+	m := getTestManifest()
 
 	if len(m.AppIDs) != 5 {
 		t.Fatalf("Incorrect number of appIDs: %+v", len(m.AppIDs))
 	}
 
-	block := m.GetAppIDsBlock()
+	expected := util.SliceToBlock(testAppIDs)
+	actual := util.SliceToBlock(m.GetAppIDs())
 
-	if block != testAppIDsBlock {
-		t.Fatalf("Incorrect AppIDs block: %+v", block)
+	if actual != expected {
+		t.Fatalf("Incorrect AppIDs block: %+v", actual)
 	}
 }

@@ -31,9 +31,8 @@ data/
 │   └── secret_paths.env
 │   └── secrets.env
 │   └── sa.env
-│   └── keys/
-│   │   └── private.pem
-│   │   └── public.pem
+│   └── private.pem
+│   └── public.pem
 ```
 
 The above definition results in the following DCOS resources and deployments:

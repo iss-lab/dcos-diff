@@ -27,6 +27,7 @@ import (
 	"log"
 	"strings"
 
+	"github.com/joho/godotenv"
 	"github.com/sergi/go-diff/diffmatchpatch"
 )
 
@@ -84,6 +85,14 @@ func SliceToBlock(lines []string) string {
 // BlockToSlice takes a slice of strings and joins them with newlines
 func BlockToSlice(lines string) []string {
 	return strings.Split(lines, "\n")
+}
+
+// EnvBytesToMap converts an envfile to a map
+func EnvBytesToMap(envBytes []byte) map[string]string {
+	envStr := string(envBytes)
+	envMap, err := godotenv.Unmarshal(envStr)
+	CheckError(err)
+	return envMap
 }
 
 func sliceToMap(lines []string) map[string]bool {

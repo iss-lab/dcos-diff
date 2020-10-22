@@ -64,3 +64,16 @@ func TestDiffMissing(t *testing.T) {
 		t.Fatalf("Incorrect missing right: %+v", missingRight)
 	}
 }
+
+func TestEnvBytesToMap(t *testing.T) {
+	envBytes := GetFileBytes("./testService.env")
+	envMap := EnvBytesToMap(envBytes)
+
+	if envMap["PACKAGE_NAME"] != "consul" {
+		t.Fatalf("Incorrect env map contents: %+v", envMap)
+	}
+
+	if envMap["PACKAGE_VERSION"] != "1.7.3" {
+		t.Fatalf("Incorrect env map contents: %+v", envMap)
+	}
+}
